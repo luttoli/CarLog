@@ -22,14 +22,17 @@ class DrivingWriteUIViewController: UIViewController {
     
     @IBOutlet weak var saveButton: UIBarButtonItem!
     
-    // 날짜 TextField 클릭 시 날짜를 고르게
+    // 출발, 도착 날짜 TextField 클릭 시 날짜를 고르게
     private let startDayPicker = UIDatePicker()
     private var startDay: Date?
+    private let arrivalDayPicker = UIDatePicker()
+    private var arrivalDay: Date?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.configureNoteTextview()
         self.configureStartDayPicker()
+        self.configureArrivalDayPicker()
     }
     
     // Textview border
@@ -44,20 +47,38 @@ class DrivingWriteUIViewController: UIViewController {
     private func configureStartDayPicker() {
         self.startDayPicker.datePickerMode = .dateAndTime
         self.startDayPicker.preferredDatePickerStyle = .wheels
-        self.startDayPicker.addTarget(self, action: #selector(dayPickerValueDidChange(_:)), for: .valueChanged)
+        self.startDayPicker.addTarget(self, action: #selector(startdayPickerValueDidChange(_:)), for: .valueChanged)
         self.startDayPicker.locale = Locale(identifier: "ko-KR")
         self.startDayTextfield.inputView = self.startDayPicker
-        
+    }
+    
+    // arrivalDayPicker
+    private func configureArrivalDayPicker() {
+        self.arrivalDayPicker.datePickerMode = .dateAndTime
+        self.arrivalDayPicker.preferredDatePickerStyle = .wheels
+        self.arrivalDayPicker.addTarget(self, action: #selector(arrivaldayPickerValueDidChange(_:)), for: .valueChanged)
+        self.arrivalDayPicker.locale = Locale(identifier: "ko-KR")
+        self.arrivalDayTextfield.inputView = self.arrivalDayPicker
     }
     
     @IBAction func tabSaveButton(_ sender: Any) {
     }
     
-    @objc private func dayPickerValueDidChange(_ startDayPicker: UIDatePicker) {
+    // startDayPicker
+    @objc private func startdayPickerValueDidChange(_ startDayPicker: UIDatePicker) {
         let formmater = DateFormatter()
         formmater.dateFormat = "yy. MM. dd (EEEEE) HH:mm"
         formmater.locale = Locale(identifier: "ko_KR")
         self.startDay = startDayPicker.date
         self.startDayTextfield.text = formmater.string(from: startDayPicker.date)
+    }
+    
+    // arrivalDayPicker
+    @objc private func arrivaldayPickerValueDidChange(_ arrivalDayPicker: UIDatePicker) {
+        let formmater = DateFormatter()
+        formmater.dateFormat = "yy. MM. dd (EEEEE) HH:mm"
+        formmater.locale = Locale(identifier: "ko_KR")
+        self.arrivalDay = arrivalDayPicker.date
+        self.arrivalDayTextfield.text = formmater.string(from: arrivalDayPicker.date)
     }
 }
