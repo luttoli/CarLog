@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		CF4A52F52893D7C1008D6D17 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF4A52F42893D7C1008D6D17 /* AppDelegate.swift */; };
 		CF4A52F72893D7C1008D6D17 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF4A52F62893D7C1008D6D17 /* SceneDelegate.swift */; };
-		CF4A52F92893D7C1008D6D17 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF4A52F82893D7C1008D6D17 /* ViewController.swift */; };
 		CF4A52FC2893D7C1008D6D17 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CF4A52FA2893D7C1008D6D17 /* Main.storyboard */; };
 		CF4A52FE2893D7C3008D6D17 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CF4A52FD2893D7C3008D6D17 /* Assets.xcassets */; };
 		CF4A53012893D7C3008D6D17 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CF4A52FF2893D7C3008D6D17 /* LaunchScreen.storyboard */; };
@@ -17,13 +16,13 @@
 		CF80ECF12896B5B200A6E4DC /* DrivingWriteUIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF80ECF02896B5B200A6E4DC /* DrivingWriteUIViewController.swift */; };
 		CF80ECF32896B60600A6E4DC /* DrivingDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF80ECF22896B60600A6E4DC /* DrivingDetailViewController.swift */; };
 		CF80ECF52896C12200A6E4DC /* DrivingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF80ECF42896C12200A6E4DC /* DrivingViewController.swift */; };
+		CF80ECF728A6A88500A6E4DC /* Driving.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF80ECF628A6A88500A6E4DC /* Driving.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		CF4A52F12893D7C1008D6D17 /* CarLog.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CarLog.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CF4A52F42893D7C1008D6D17 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CF4A52F62893D7C1008D6D17 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		CF4A52F82893D7C1008D6D17 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		CF4A52FB2893D7C1008D6D17 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		CF4A52FD2893D7C3008D6D17 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		CF4A53002893D7C3008D6D17 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -32,6 +31,7 @@
 		CF80ECF02896B5B200A6E4DC /* DrivingWriteUIViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrivingWriteUIViewController.swift; sourceTree = "<group>"; };
 		CF80ECF22896B60600A6E4DC /* DrivingDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrivingDetailViewController.swift; sourceTree = "<group>"; };
 		CF80ECF42896C12200A6E4DC /* DrivingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrivingViewController.swift; sourceTree = "<group>"; };
+		CF80ECF628A6A88500A6E4DC /* Driving.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Driving.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -66,7 +66,6 @@
 			children = (
 				CF4A52F42893D7C1008D6D17 /* AppDelegate.swift */,
 				CF4A52F62893D7C1008D6D17 /* SceneDelegate.swift */,
-				CF4A52F82893D7C1008D6D17 /* ViewController.swift */,
 				CF4A52FA2893D7C1008D6D17 /* Main.storyboard */,
 				CF4A52FD2893D7C3008D6D17 /* Assets.xcassets */,
 				CF4A52FF2893D7C3008D6D17 /* LaunchScreen.storyboard */,
@@ -75,6 +74,7 @@
 				CF80ECEE2896754F00A6E4DC /* DrivingCell.swift */,
 				CF80ECF02896B5B200A6E4DC /* DrivingWriteUIViewController.swift */,
 				CF80ECF22896B60600A6E4DC /* DrivingDetailViewController.swift */,
+				CF80ECF628A6A88500A6E4DC /* Driving.swift */,
 			);
 			path = CarLog;
 			sourceTree = "<group>";
@@ -153,7 +153,7 @@
 				CF80ECF52896C12200A6E4DC /* DrivingViewController.swift in Sources */,
 				CF80ECF12896B5B200A6E4DC /* DrivingWriteUIViewController.swift in Sources */,
 				CF80ECF32896B60600A6E4DC /* DrivingDetailViewController.swift in Sources */,
-				CF4A52F92893D7C1008D6D17 /* ViewController.swift in Sources */,
+				CF80ECF728A6A88500A6E4DC /* Driving.swift in Sources */,
 				CF4A52F52893D7C1008D6D17 /* AppDelegate.swift in Sources */,
 				CF4A52F72893D7C1008D6D17 /* SceneDelegate.swift in Sources */,
 				CF80ECEF2896754F00A6E4DC /* DrivingCell.swift in Sources */,
