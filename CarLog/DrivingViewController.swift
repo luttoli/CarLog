@@ -126,10 +126,10 @@ extension DrivingViewController: UICollectionViewDelegate {
         let driving = self.drivingList[indexPath.row]
         viewContoller.driving = driving
         viewContoller.indexPath = indexPath
+        viewContoller.delegate = self
         self.navigationController?.pushViewController(viewContoller, animated: true)
     }
 }
-
 
 // drivingWriteUIViewContoller 채택하라
 extension DrivingViewController: DrivingWriteViewDelegate {
@@ -141,5 +141,13 @@ extension DrivingViewController: DrivingWriteViewDelegate {
             $0.startday.compare($1.startday) == .orderedDescending
         })
         self.drivingcollectionview.reloadData()
+    }
+}
+
+// 삭제
+extension DrivingViewController: DrivingDetailViewDelegate {
+    func didSelectDelete(indexPath: IndexPath) {
+        self.drivingList.remove(at: indexPath.row)
+        self.drivingcollectionview.deleteItems(at: [indexPath])
     }
 }

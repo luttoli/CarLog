@@ -7,6 +7,12 @@
 
 import UIKit
 
+//
+enum DrivingEditorMode {
+    case new
+    case edit(IndexPath, Driving)
+}
+
 // 델리게이트 통해서 운행일지 리스트 화면에 객체를 전달
 protocol DrivingWriteViewDelegate: AnyObject {
     func didSelectReigster(driving: Driving)
@@ -33,8 +39,11 @@ class DrivingWriteUIViewController: UIViewController {
     private let arrivalDayPicker = UIDatePicker()
     private var arrivalDay: Date?
     
-    // 프로포티 정의
+    // 프로퍼티 정의
     weak var delegate: DrivingWriteViewDelegate?
+    
+    // 드라이빙에디터 모드를 저장하는 프로퍼티 정의
+    var drivingEditorMode: DrivingEditorMode = .new
     
     // 처음에 노출되는 주행 시간
     var drivingtime: String = "0분"
@@ -45,7 +54,36 @@ class DrivingWriteUIViewController: UIViewController {
         self.configureStartDayPicker()
         self.configureArrivalDayPicker()
         self.configureInputField()
+        self.configureEditMode()
         self.saveButton.isEnabled = false // 처음에 진입 시 입력이 하나도 안되어있을테니 비활성화 처리
+    }
+    
+    //
+    private func configureEditMode() {
+        switch self.drivingEditorMode {
+        case let .edit(_, driving):
+            self.startDayTextfield.text = self.dateTostring(date: driving.startday)
+            self.arrivalDayTextfield.text = self.dateTostring(date: driving.arrivalday)
+            self.startDay = driving.startday
+            self.arrivalDay = driving.arrivalday
+            self.startAreaTextfield.text = driving.startarea
+            self.arrivalAreaTextfield.text = driving.arrivalarea
+            self.startKmTextfield.text = driving.startkm
+            self.arrivalKmTextfield.text = driving.arrivalkm
+            self.drivingReasonTextfield.text = driving.drivingreason
+            self.noteTextView.text = driving.note
+            self.saveButton.title = "수정"
+            
+        default:
+            break
+        }
+    }
+    
+    private func dateTostring(date: Date) -> String {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yy. MM. dd (EEEEE) HH:mm"
+        formatter.locale = Locale(identifier: "ko_KR")
+        return formatter.string(from: date)
     }
     
     // Textview border
@@ -97,7 +135,21 @@ class DrivingWriteUIViewController: UIViewController {
         guard let drivingreason = self.drivingReasonTextfield.text else { return }
         guard let note = noteTextView.text else { return }
         let driving = Driving(startday: startday, arrivalday: arrivalday, startarea: startarea, arrivalarea: arrivalarea, startkm: startkm, arrivalkm: arrivalkm, drivingreason: drivingreason, note: note)
-        self.delegate?.didSelectReigster(driving: driving)
+        
+        //
+        switch self.drivingEditorMode {
+        case .new:
+            self.delegate?.didSelectReigster(driving: driving)
+        
+        case let .edit(indexPath, _):
+            NotificationCenter.default.post(
+                name: NSNotification.Name("editDriving"),
+                object: driving,
+                userInfo: [
+                    "indexPath.row": indexPath.row
+                ]
+            )
+        }
         self.navigationController?.popViewController(animated: true) // 화면을 전환한다
     }
     

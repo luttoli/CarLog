@@ -7,6 +7,11 @@
 
 import UIKit
 
+// 델리게이트 : 통해서 상세화면에서 삭제가 일어날때 메서드를 통해 리스트를 인덱스패치를 전달해서
+protocol DrivingDetailViewDelegate: AnyObject {
+    func didSelectDelete(indexPath: IndexPath)
+}
+
 class DrivingDetailViewController: UIViewController {
 
     @IBOutlet weak var startdayLable: UILabel!
@@ -19,6 +24,8 @@ class DrivingDetailViewController: UIViewController {
     @IBOutlet weak var drivingkmLable: UILabel!
     @IBOutlet weak var drivingreasonLable: UILabel!
     @IBOutlet weak var noteTextView: UITextView!
+    
+    weak var delegate: DrivingDetailViewDelegate?
     
     // 전달받을 프로퍼티
     var driving: Driving?
@@ -57,10 +64,35 @@ class DrivingDetailViewController: UIViewController {
         return formatter.string(from: date)
     }
     
+    // selector 함수 정의
+    @objc func editDrivingNotification(_ notification: Notification) {
+        guard let driving = notification.object as? Driving else { return }
+        guard let row = notification.userInfo?["indexPath.row"] as? Int else { return }
+        self.driving = driving
+        self.configureView()
+    }
+    
     @IBAction func tabEditButton(_ sender: Any) {
+        guard let viewController = self.storyboard?.instantiateViewController(identifier: "DrivingWriteUIViewController") as? DrivingWriteUIViewController else { return }
+        guard let indexPath = self.indexPath else { return }
+        guard let driving = self.driving else { return }
+        viewController.drivingEditorMode = .edit(indexPath, driving)
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(editDrivingNotification(_:)),
+            name: NSNotification.Name("editDriving"),
+            object: nil
+        )
+        self.navigationController?.pushViewController(viewController, animated: true)
     }
     
     @IBAction func tabDeleteButton(_ sender: Any) {
+        guard let indexPath = self.indexPath else { return }
+        self.delegate?.didSelectDelete(indexPath: indexPath)
+        self.navigationController?.popViewController(animated: true)
     }
     
+    deinit {
+        NotificationCenter.default.removeObserver(self)
+    }
 }
