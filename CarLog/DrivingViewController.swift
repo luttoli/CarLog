@@ -22,6 +22,12 @@ class DrivingViewController: UIViewController {
         super.viewDidLoad()
         self.configureCollectionView()
         self.loadDrivingList()
+        NotificationCenter.default.addObserver(
+        self,
+        selector: #selector(editDrivingNotification(_:)),
+        name: NSNotification.Name("editDriving"),
+        object: nil
+        )
     }
     
     // 운행일지 리스트 배열에 추가된 일지를 콜랙션뷰에 추가
@@ -31,7 +37,17 @@ class DrivingViewController: UIViewController {
         self.drivingcollectionview.contentInset = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
         self.drivingcollectionview.delegate = self
         self.drivingcollectionview.dataSource = self
-        
+    }
+    
+    //
+    @objc func editDrivingNotification(_ notification: Notification) {
+        guard let driving = notification.object as? Driving else { return }
+        guard let row = notification.userInfo?["indexPath.row"] as? Int else { return }
+        self.drivingList[row] = driving
+        self.drivingList = self.drivingList.sorted(by: {
+            $0.startday.compare($1.startday) == .orderedDescending
+        })
+        self.drivingcollectionview.reloadData()
     }
     
     // 작성화면의 이동은 세그웨이를 통해서 이동하기 때문에 prepare이용

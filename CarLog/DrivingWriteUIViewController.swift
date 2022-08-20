@@ -22,12 +22,10 @@ class DrivingWriteUIViewController: UIViewController {
 
     @IBOutlet weak var startDayTextfield: UITextField!
     @IBOutlet weak var arrivalDayTextfield: UITextField!
-    @IBOutlet weak var drivingTimeLabel: UILabel!
     @IBOutlet weak var startAreaTextfield: UITextField!
     @IBOutlet weak var arrivalAreaTextfield: UITextField!
     @IBOutlet weak var startKmTextfield: UITextField!
     @IBOutlet weak var arrivalKmTextfield: UITextField!
-    @IBOutlet weak var drivingKmLabel: UILabel!
     @IBOutlet weak var drivingReasonTextfield: UITextField!
     @IBOutlet weak var noteTextView: UITextView!
     
@@ -44,9 +42,6 @@ class DrivingWriteUIViewController: UIViewController {
     
     // 드라이빙에디터 모드를 저장하는 프로퍼티 정의
     var drivingEditorMode: DrivingEditorMode = .new
-    
-    // 처음에 노출되는 주행 시간
-    var drivingtime: String = "0분"
     
     override func viewDidLoad() {
         super.viewDidLoad()
