@@ -14,7 +14,7 @@ class DrivingCell: UICollectionViewCell {
     @IBOutlet weak var drivingTimeLabel: UILabel!
     @IBOutlet weak var startAreaLabel: UILabel!
     @IBOutlet weak var arrivalAreaLabel: UILabel!
-    @IBOutlet weak var drivingReason: UILabel!
+    @IBOutlet weak var drivingReasonLabel: UILabel!
     @IBOutlet weak var startKmLabel: UILabel!
     @IBOutlet weak var arrivalKmLabel: UILabel!
     @IBOutlet weak var drivingKmLabel: UILabel!

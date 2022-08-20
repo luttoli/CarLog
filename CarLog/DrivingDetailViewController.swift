@@ -14,15 +14,15 @@ protocol DrivingDetailViewDelegate: AnyObject {
 
 class DrivingDetailViewController: UIViewController {
 
-    @IBOutlet weak var startdayLable: UILabel!
-    @IBOutlet weak var arrivaldayLable: UILabel!
-    @IBOutlet weak var drivingtimeLable: UILabel!
-    @IBOutlet weak var startareaLable: UILabel!
-    @IBOutlet weak var arrivalareaLable: UILabel!
-    @IBOutlet weak var startkmLable: UILabel!
-    @IBOutlet weak var arrivalkmLable: UILabel!
-    @IBOutlet weak var drivingkmLable: UILabel!
-    @IBOutlet weak var drivingreasonLable: UILabel!
+    @IBOutlet weak var startDayLabel: UILabel!
+    @IBOutlet weak var arrivalDayLabel: UILabel!
+    @IBOutlet weak var drivingTimeLabel: UILabel!
+    @IBOutlet weak var startAreaLabel: UILabel!
+    @IBOutlet weak var arrivalAreaLabel: UILabel!
+    @IBOutlet weak var startKmLabel: UILabel!
+    @IBOutlet weak var arrivalKmLabel: UILabel!
+    @IBOutlet weak var drivingKmLabel: UILabel!
+    @IBOutlet weak var drivingReasonLabel: UILabel!
     @IBOutlet weak var noteTextView: UITextView!
     
     weak var delegate: DrivingDetailViewDelegate?
@@ -47,16 +47,24 @@ class DrivingDetailViewController: UIViewController {
     // 프로퍼티를 통해 전달받은 driving 객체를 View에 초기화
     private func configureView() {
         guard let driving = self.driving else { return }
-        self.startdayLable.text = self.dateTostring(date: driving.startday)
-        self.arrivaldayLable.text = self.dateTostring(date: driving.arrivalday)
-        self.startareaLable.text = driving.startarea
-        self.arrivalareaLable.text = driving.arrivalarea
-        self.startkmLable.text = driving.startkm
-        self.arrivalkmLable.text = driving.arrivalkm
-        self.drivingreasonLable.text = driving.drivingreason
+        self.startDayLabel.text = self.dateTostring(date: driving.startday)
+        self.arrivalDayLabel.text = self.dateTostring(date: driving.arrivalday)
+        self.startAreaLabel.text = driving.startarea
+        self.arrivalAreaLabel.text = driving.arrivalarea
+        self.startKmLabel.text = driving.startkm
+        self.arrivalKmLabel.text = driving.arrivalkm
+        self.drivingReasonLabel.text = driving.drivingreason
         self.noteTextView.text = driving.note
+        
+        let drivingtime = Int(driving.arrivalday.timeIntervalSince(driving.startday))
+        self.drivingTimeLabel.text = String(drivingtime / 60)
+        
+        let arrivalkmint = Int(self.arrivalKmLabel.text!)
+        let startkmint = Int(self.startKmLabel.text!)
+        self.drivingKmLabel.text = String(arrivalkmint! - startkmint!)
     }
     
+    // 문자열로 변환
     private func dateTostring(date: Date) -> String {
         let formatter = DateFormatter()
         formatter.dateFormat = "yy. MM. dd (EEEEE) HH:mm"
@@ -72,6 +80,7 @@ class DrivingDetailViewController: UIViewController {
         self.configureView()
     }
     
+    // 수정 버튼 클릭 시
     @IBAction func tabEditButton(_ sender: Any) {
         guard let viewController = self.storyboard?.instantiateViewController(identifier: "DrivingWriteUIViewController") as? DrivingWriteUIViewController else { return }
         guard let indexPath = self.indexPath else { return }
@@ -86,6 +95,7 @@ class DrivingDetailViewController: UIViewController {
         self.navigationController?.pushViewController(viewController, animated: true)
     }
     
+    // 삭제 버튼 클릭 시
     @IBAction func tabDeleteButton(_ sender: Any) {
         guard let indexPath = self.indexPath else { return }
         self.delegate?.didSelectDelete(indexPath: indexPath)

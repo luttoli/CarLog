@@ -121,9 +121,17 @@ extension DrivingViewController: UICollectionViewDataSource {
         cell.arrivalDayLabel.text = self.dateTostring(date: driving.arrivalday)
         cell.startAreaLabel.text = driving.startarea
         cell.arrivalAreaLabel.text = driving.arrivalarea
-        cell.drivingReason.text = driving.drivingreason
+        cell.drivingReasonLabel.text = driving.drivingreason
         cell.startKmLabel.text = driving.startkm
         cell.arrivalKmLabel.text = driving.arrivalkm
+        
+        let drivingtime = Int(driving.arrivalday.timeIntervalSince(driving.startday))
+        cell.drivingTimeLabel.text = String(drivingtime / 60)
+        
+        let arrivalkmint = Int(cell.arrivalKmLabel.text!)
+        let startkmint = Int(cell.startKmLabel.text!)
+        cell.drivingKmLabel.text = String(arrivalkmint! - startkmint!)
+        
         return cell
     }
 }
