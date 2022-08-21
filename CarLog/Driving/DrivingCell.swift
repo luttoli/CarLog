@@ -19,6 +19,7 @@ class DrivingCell: UICollectionViewCell {
     @IBOutlet weak var arrivalKmLabel: UILabel!
     @IBOutlet weak var drivingKmLabel: UILabel!
     
+    // 셀 테두리 노출
     required init?(coder: NSCoder) {
         super.init(coder: coder)
         self.contentView.layer.cornerRadius = 3.0
