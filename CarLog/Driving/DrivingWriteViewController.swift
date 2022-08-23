@@ -18,7 +18,7 @@ protocol DrivingWriteViewDelegate: AnyObject {
     func didSelectReigster(driving: Driving)
 }
 
-class DrivingWriteUIViewController: UIViewController {
+class DrivingWriteViewController: UIViewController {
 
     @IBOutlet weak var startDayTextfield: UITextField!
     @IBOutlet weak var arrivalDayTextfield: UITextField!
@@ -197,7 +197,7 @@ class DrivingWriteUIViewController: UIViewController {
         self.validateInputField()
     }
     
-    // 빈 화면 클릭 시 닫힘처리
+    // 빈 화면 클릭 시 키보드 닫힘처리
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         self.view.endEditing(true)
     }
@@ -209,7 +209,7 @@ class DrivingWriteUIViewController: UIViewController {
 }
 
 // textview에 text가 입력될 때 마다 호출되는 메서드
-extension DrivingWriteUIViewController: UITextViewDelegate {
+extension DrivingWriteViewController: UITextViewDelegate {
     func textViewDidChange(_ textView: UITextView) {
         self.validateInputField()
     }

@@ -52,7 +52,7 @@ class DrivingViewController: UIViewController {
     
     // 작성화면의 이동은 세그웨이를 통해서 이동하기 때문에 prepare이용
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if let drivingWriteUIViewContoller = segue.destination as? DrivingWriteUIViewController {
+        if let drivingWriteUIViewContoller = segue.destination as? DrivingWriteViewController {
             drivingWriteUIViewContoller.delegate = self
         }
     }

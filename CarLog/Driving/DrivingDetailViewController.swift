@@ -82,7 +82,7 @@ class DrivingDetailViewController: UIViewController {
     
     // 수정 버튼 클릭 시
     @IBAction func tabEditButton(_ sender: Any) {
-        guard let viewController = self.storyboard?.instantiateViewController(identifier: "DrivingWriteUIViewController") as? DrivingWriteUIViewController else { return }
+        guard let viewController = self.storyboard?.instantiateViewController(identifier: "DrivingWriteUIViewController") as? DrivingWriteViewController else { return }
         guard let indexPath = self.indexPath else { return }
         guard let driving = self.driving else { return }
         viewController.drivingEditorMode = .edit(indexPath, driving)
