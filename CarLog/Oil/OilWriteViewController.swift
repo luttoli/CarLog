@@ -30,9 +30,12 @@ class OilWriteViewController: UIViewController {
         super.viewDidLoad()
         configureNoteTextview()
         configureOilDayPicker()
-        configureOilTypePicker()
         oilzonToolbar()
         oilkmToolbar()
+        configureOilTypePicker()
+        oilunitToolbar()
+        oilnumToolbar()
+        oildcToolbar()
     }
     
     // Textview 테두리
@@ -165,7 +168,7 @@ class OilWriteViewController: UIViewController {
         self.oilZonTextField.becomeFirstResponder()
     }
     
-    // 항목 피커뷰 꾸미기 / 와 일단 드롭다운 나와서 선택하는거 된다 성공했다 진짜 미쳤다 별거아닌거 아는데 감격스럽다 증말
+    // 주유 종류 항목 드롭다운메뉴 피커뷰 꾸미기 / 와 일단 드롭다운 나와서 선택하는거 된다 성공했다 진짜 미쳤다 별거아닌거 아는데 감격스럽다 증말
     private func configureOilTypePicker() {
         self.oilTypePicker.delegate = self
         self.oilTypePicker.dataSource = self
@@ -173,7 +176,7 @@ class OilWriteViewController: UIViewController {
         configureOilTypePickerToolbar()
     }
     
-    // 항목 피커뷰 위에 툴바 설정
+    // 주유 종류 항목 드롭다운메뉴 피커뷰 위에 툴바 설정
     private func configureOilTypePickerToolbar() {
         let oiltypeToolbar = UIToolbar()
         oiltypeToolbar.barStyle = UIBarStyle.default
@@ -191,7 +194,7 @@ class OilWriteViewController: UIViewController {
         oilTypeTextField.inputAccessoryView = oiltypeToolbar
     }
     
-    // 항목 피커뷰 툴바 선택 버튼
+    // 주유 종류 항목 드롭다운메뉴 피커뷰 툴바 선택 버튼
     @objc func oiltypetoolbarSelect() {
         let row = self.oilTypePicker.selectedRow(inComponent: 0)
         self.oilTypePicker.selectRow(row, inComponent: 0, animated: false)
@@ -199,15 +202,116 @@ class OilWriteViewController: UIViewController {
         self.oilTypeTextField.resignFirstResponder()
     }
     
-    // 항목 피커뷰 툴바 다음 버튼
+    // 주유 종류 항목 드롭다운메뉴 피커뷰 툴바 다음 버튼
     @objc func oiltypetoolbarNext() {
         self.oilUnitTextField.becomeFirstResponder()
     }
     
-    // 항목 피커뷰 툴바 이전 버튼
+    // 주유 종류 항목 드롭다운메뉴 피커뷰 툴바 이전 버튼
     @objc func oiltypetoolbarBefore() {
         self.oilKmTextField.becomeFirstResponder()
     }
+    
+    // 단가 툴바 설정
+    private func oilunitToolbar() {
+        let oilunittoolbar = UIToolbar()
+        oilunittoolbar.barStyle = UIBarStyle.default
+        oilunittoolbar.isTranslucent = true
+        oilunittoolbar.sizeToFit()
+        
+        let oilunitSelectBT = UIBarButtonItem(title: "완료", style: .plain, target: self, action: #selector(self.oilunittoolbarSelect))
+        let flexibleSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
+        let oilunitNextBT = UIBarButtonItem(title: "다음", style: .plain, target: self, action: #selector(self.oilunittoolbarNext))
+        let oilunitBeforeBT = UIBarButtonItem(title: "이전", style: .plain, target: .none, action: #selector(self.oilunittoolbarBefore))
+        
+        oilunittoolbar.setItems([oilunitBeforeBT,oilunitNextBT,flexibleSpace,oilunitSelectBT], animated: false)
+        oilunittoolbar.isUserInteractionEnabled = true
+        
+        oilUnitTextField.inputAccessoryView = oilunittoolbar
+    }
+    
+    // 단가 툴바 선택 버튼
+    @objc func oilunittoolbarSelect() {
+        self.oilUnitTextField.resignFirstResponder()
+    }
+    
+    // 단가 툴바 다음 버튼
+    @objc func oilunittoolbarNext() {
+        self.oilNumTextField.becomeFirstResponder()
+    }
+    
+    // 단가 툴바 이전 버튼
+    @objc func oilunittoolbarBefore() {
+        self.oilTypeTextField.becomeFirstResponder()
+    }
+    
+    // 수량 툴바 설정
+    private func oilnumToolbar() {
+        let oilnumtoolbar = UIToolbar()
+        oilnumtoolbar.barStyle = UIBarStyle.default
+        oilnumtoolbar.isTranslucent = true
+        oilnumtoolbar.sizeToFit()
+        
+        let oilnumSelectBT = UIBarButtonItem(title: "완료", style: .plain, target: self, action: #selector(self.oilnumtoolbarSelect))
+        let flexibleSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
+        let oilnumNextBT = UIBarButtonItem(title: "다음", style: .plain, target: self, action: #selector(self.oilnumtoolbarNext))
+        let oilnumBeforeBT = UIBarButtonItem(title: "이전", style: .plain, target: .none, action: #selector(self.oilnumtoolbarBefore))
+        
+        oilnumtoolbar.setItems([oilnumBeforeBT,oilnumNextBT,flexibleSpace,oilnumSelectBT], animated: false)
+        oilnumtoolbar.isUserInteractionEnabled = true
+        
+        oilNumTextField.inputAccessoryView = oilnumtoolbar
+    }
+    
+    // 수량 툴바 선택 버튼
+    @objc func oilnumtoolbarSelect() {
+        self.oilNumTextField.resignFirstResponder()
+    }
+    
+    // 수량 툴바 다음 버튼
+    @objc func oilnumtoolbarNext() {
+        self.oilDcTextField.becomeFirstResponder()
+    }
+    
+    // 수량 툴바 이전 버튼
+    @objc func oilnumtoolbarBefore() {
+        self.oilUnitTextField.becomeFirstResponder()
+    }
+    
+    // 할인 툴바 설정
+    private func oildcToolbar() {
+        let oildctoolbar = UIToolbar()
+        oildctoolbar.barStyle = UIBarStyle.default
+        oildctoolbar.isTranslucent = true
+        oildctoolbar.sizeToFit()
+        
+        let oildcSelectBT = UIBarButtonItem(title: "완료", style: .plain, target: self, action: #selector(self.oildctoolbarSelect))
+        let flexibleSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
+        let oildcNextBT = UIBarButtonItem(title: "다음", style: .plain, target: self, action: #selector(self.oildctoolbarNext))
+        let oildcBeforeBT = UIBarButtonItem(title: "이전", style: .plain, target: .none, action: #selector(self.oildctoolbarBefore))
+        
+        oildctoolbar.setItems([oildcBeforeBT,oildcNextBT,flexibleSpace,oildcSelectBT], animated: false)
+        oildctoolbar.isUserInteractionEnabled = true
+        
+        oilDcTextField.inputAccessoryView = oildctoolbar
+    }
+    
+    // 할인 툴바 선택 버튼
+    @objc func oildctoolbarSelect() {
+        self.oilDcTextField.resignFirstResponder()
+    }
+    
+    // 할인 툴바 다음 버튼
+    @objc func oildctoolbarNext() {
+        self.oilNoteTextView.becomeFirstResponder()
+    }
+    
+    // 할인 툴바 이전 버튼
+    @objc func oildctoolbarBefore() {
+        self.oilNumTextField.becomeFirstResponder()
+    }
+    
+    // 비고는 어쩔래? 한번 생각해봐 
     
     // Done 버튼 클릭
     @IBAction func tapSaveButton(_ sender: Any) {
