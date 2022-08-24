@@ -31,6 +31,8 @@ class OilWriteViewController: UIViewController {
         configureNoteTextview()
         configureOilDayPicker()
         configureOilTypePicker()
+        oilzonToolbar()
+        oilkmToolbar()
     }
     
     // Textview 테두리
@@ -41,7 +43,7 @@ class OilWriteViewController: UIViewController {
         self.oilNoteTextView.layer.cornerRadius = 5.0
     }
     
-    // 날짜 피커뷰 꾸미기
+    // 주유일시 날짜 피커뷰 꾸미기
     private func configureOilDayPicker() {
         self.oilDayPicker.datePickerMode = .dateAndTime
         self.oilDayPicker.preferredDatePickerStyle = .wheels
@@ -66,7 +68,7 @@ class OilWriteViewController: UIViewController {
         oilDayTextField.inputAccessoryView = oildayToolbar
     }
     
-    // 날짜 피커뷰의 addtarget의 selector / 형식 전달하기
+    // 주유일시 날짜 피커뷰의 addtarget의 selector / 형식 전달하기
     @objc private func oildayPickerValueDidChange(_ datePicker: UIDatePicker) {
         let oildayformmater = DateFormatter()
         oildayformmater.dateFormat = "yy. MM. dd (EEEEE) HH:mm"
@@ -76,7 +78,7 @@ class OilWriteViewController: UIViewController {
         self.oilDayTextField.sendActions(for: .editingChanged)
     }
     
-    // 날짜 피커뷰 툴바 선택 버튼
+    // 주유일시 날짜 피커뷰 툴바 선택 버튼
     @objc func oildaytoolbarSelect(_ datePicker: UIDatePicker) {
         let oildayformmater = DateFormatter()
         oildayformmater.dateFormat = "yy. MM. dd (EEEEE) HH:mm"
@@ -87,23 +89,82 @@ class OilWriteViewController: UIViewController {
         self.oilDayTextField.resignFirstResponder()
     }
     
-    // 날짜 피커뷰 툴바 다음 버튼
+    // 주유일시 날짜 피커뷰 툴바 다음 버튼
     @objc func oildaytoolbarNext() {
-        let oildayformmater = DateFormatter()
-        oildayformmater.dateFormat = "yy. MM. dd (EEEEE) HH:mm"
-        oildayformmater.locale = Locale(identifier: "ko_KR")
-        self.oilDay = oilDayPicker.date
-        self.oilDayTextField.text = oildayformmater.string(from: oilDayPicker.date)
-        self.oilDayTextField.sendActions(for: .editingChanged)
-        self.oilDayTextField.resignFirstResponder()
-        self.oilZonTextField.becomeFirstResponder()
+        self.oilZonTextField.becomeFirstResponder() // 해당 텍스트필드 활성화?
     }
     
-    // 날짜 피커뷰 툴바 이전 버튼
+    // 주유일시 날짜 피커뷰 툴바 이전 버튼
     @objc func oildaytoolbarBefore() {
         self.oilDayTextField.resignFirstResponder()
     }
+    
+    // 주유소 툴바 설정
+    private func oilzonToolbar() {
+        let oilzontoolbar = UIToolbar()
+        oilzontoolbar.barStyle = UIBarStyle.default
+        oilzontoolbar.isTranslucent = true
+        oilzontoolbar.sizeToFit()
         
+        let oilzonSelectBT = UIBarButtonItem(title: "완료", style: .plain, target: self, action: #selector(self.oilzontoolbarSelect))
+        let flexibleSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
+        let oilzonNextBT = UIBarButtonItem(title: "다음", style: .plain, target: self, action: #selector(self.oilzontoolbarNext))
+        let oilzonBeforeBT = UIBarButtonItem(title: "이전", style: .plain, target: .none, action: #selector(self.oilzontoolbarBefore))
+        
+        oilzontoolbar.setItems([oilzonBeforeBT,oilzonNextBT,flexibleSpace,oilzonSelectBT], animated: false)
+        oilzontoolbar.isUserInteractionEnabled = true
+        
+        oilZonTextField.inputAccessoryView = oilzontoolbar
+    }
+    
+    // 주유소 툴바 선택 버튼
+    @objc func oilzontoolbarSelect() {
+        self.oilZonTextField.resignFirstResponder()
+    }
+    
+    // 주유소 툴바 다음 버튼
+    @objc func oilzontoolbarNext() {
+        self.oilKmTextField.becomeFirstResponder()
+    }
+    
+    // 주유소 툴바 이전 버튼
+    @objc func oilzontoolbarBefore() {
+        self.oilDayTextField.becomeFirstResponder()
+    }
+    
+    // 주유 시 키로수 툴바 설정
+    private func oilkmToolbar() {
+        let oilkmtoolbar = UIToolbar()
+        oilkmtoolbar.barStyle = UIBarStyle.default
+        oilkmtoolbar.isTranslucent = true
+        oilkmtoolbar.sizeToFit()
+        
+        let oilkmSelectBT = UIBarButtonItem(title: "완료", style: .plain, target: self, action: #selector(self.oilkmtoolbarSelect))
+        let flexibleSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
+        let oilkmNextBT = UIBarButtonItem(title: "다음", style: .plain, target: self, action: #selector(self.oilkmtoolbarNext))
+        let oilkmBeforeBT = UIBarButtonItem(title: "이전", style: .plain, target: .none, action: #selector(self.oilkmtoolbarBefore))
+        
+        oilkmtoolbar.setItems([oilkmBeforeBT,oilkmNextBT,flexibleSpace,oilkmSelectBT], animated: false)
+        oilkmtoolbar.isUserInteractionEnabled = true
+        
+        oilKmTextField.inputAccessoryView = oilkmtoolbar
+    }
+    
+    // 주유 시 키로수 툴바 선택 버튼
+    @objc func oilkmtoolbarSelect() {
+        self.oilKmTextField.resignFirstResponder()
+    }
+    
+    // 주유 시 키로수 툴바 다음 버튼
+    @objc func oilkmtoolbarNext() {
+        self.oilTypeTextField.becomeFirstResponder()
+    }
+    
+    // 주유 시 키로수 툴바 이전 버튼
+    @objc func oilkmtoolbarBefore() {
+        self.oilZonTextField.becomeFirstResponder()
+    }
+    
     // 항목 피커뷰 꾸미기 / 와 일단 드롭다운 나와서 선택하는거 된다 성공했다 진짜 미쳤다 별거아닌거 아는데 감격스럽다 증말
     private func configureOilTypePicker() {
         self.oilTypePicker.delegate = self
@@ -121,9 +182,10 @@ class OilWriteViewController: UIViewController {
         
         let oiltypeSelectBT = UIBarButtonItem(title: "선택", style: .plain, target: self, action: #selector(self.oiltypetoolbarSelect))
         let flexibleSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
-        let oiltypeCancelBT = UIBarButtonItem(title: "취소", style: .plain, target: self, action: #selector(self.oiltypetoolbarCancel))
+        let oiltypeNextBT = UIBarButtonItem(title: "다음", style: .plain, target: self, action: #selector(self.oiltypetoolbarNext))
+        let oiltypeBeforeBT = UIBarButtonItem(title: "이전", style: .plain, target: .none, action: #selector(self.oiltypetoolbarBefore))
         
-        oiltypeToolbar.setItems([oiltypeCancelBT,flexibleSpace,oiltypeSelectBT], animated: false)
+        oiltypeToolbar.setItems([oiltypeBeforeBT,oiltypeNextBT,flexibleSpace,oiltypeSelectBT], animated: false)
         oiltypeToolbar.isUserInteractionEnabled = true
         
         oilTypeTextField.inputAccessoryView = oiltypeToolbar
@@ -137,13 +199,17 @@ class OilWriteViewController: UIViewController {
         self.oilTypeTextField.resignFirstResponder()
     }
     
-    // 항목 피커뷰 툴바 취소 버튼
-    @objc func oiltypetoolbarCancel() {
-        self.oilTypeTextField.text = nil
-        self.oilTypeTextField.resignFirstResponder()
+    // 항목 피커뷰 툴바 다음 버튼
+    @objc func oiltypetoolbarNext() {
+        self.oilUnitTextField.becomeFirstResponder()
     }
     
-    // done 버튼 클릭
+    // 항목 피커뷰 툴바 이전 버튼
+    @objc func oiltypetoolbarBefore() {
+        self.oilKmTextField.becomeFirstResponder()
+    }
+    
+    // Done 버튼 클릭
     @IBAction func tapSaveButton(_ sender: Any) {
     }
     
