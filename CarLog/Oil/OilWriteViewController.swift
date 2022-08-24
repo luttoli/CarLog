@@ -33,7 +33,7 @@ class OilWriteViewController: UIViewController {
         configureOilTypePicker()
     }
     
-    // Textview border
+    // Textview 테두리
     private func configureNoteTextview() {
         let borderColor = UIColor(red: 220/225, green: 220/225, blue: 220/225, alpha: 1.0)
         self.oilNoteTextView.layer.borderColor = borderColor.cgColor
@@ -56,22 +56,14 @@ class OilWriteViewController: UIViewController {
         oildayToolbar.sizeToFit()
         
         let oildaySelectBT = UIBarButtonItem(title: "선택", style: .plain, target: self, action: #selector(self.oildaytoolbarSelect))
+        let flexibleSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
+        let oildayNextBT = UIBarButtonItem(title: "다음", style: .plain, target: self, action: #selector(self.oildaytoolbarNext))
+        let oildayBeforeBT = UIBarButtonItem(title: "이전", style: .plain, target: .none, action: #selector(self.oildaytoolbarBefore))
         
-        oildayToolbar.setItems([oildaySelectBT], animated: false)
+        oildayToolbar.setItems([oildayBeforeBT,oildayNextBT,flexibleSpace,oildaySelectBT], animated: false)
         oildayToolbar.isUserInteractionEnabled = true
         
         oilDayTextField.inputAccessoryView = oildayToolbar
-    }
-    
-    // 날짜 피커뷰 툴바 선택 버튼
-    @objc func oildaytoolbarSelect(_ datePicker: UIDatePicker) {
-        let oildayformmater = DateFormatter()
-        oildayformmater.dateFormat = "yy. MM. dd (EEEEE) HH:mm" 
-        oildayformmater.locale = Locale(identifier: "ko_KR")
-        self.oilDay = oilDayPicker.date
-        self.oilDayTextField.text = oildayformmater.string(from: oilDayPicker.date)
-        self.oilDayTextField.sendActions(for: .editingChanged)
-        self.oilDayTextField.resignFirstResponder()
     }
     
     // 날짜 피커뷰의 addtarget의 selector / 형식 전달하기
@@ -84,6 +76,34 @@ class OilWriteViewController: UIViewController {
         self.oilDayTextField.sendActions(for: .editingChanged)
     }
     
+    // 날짜 피커뷰 툴바 선택 버튼
+    @objc func oildaytoolbarSelect(_ datePicker: UIDatePicker) {
+        let oildayformmater = DateFormatter()
+        oildayformmater.dateFormat = "yy. MM. dd (EEEEE) HH:mm"
+        oildayformmater.locale = Locale(identifier: "ko_KR")
+        self.oilDay = oilDayPicker.date
+        self.oilDayTextField.text = oildayformmater.string(from: oilDayPicker.date)
+        self.oilDayTextField.sendActions(for: .editingChanged)
+        self.oilDayTextField.resignFirstResponder()
+    }
+    
+    // 날짜 피커뷰 툴바 다음 버튼
+    @objc func oildaytoolbarNext() {
+        let oildayformmater = DateFormatter()
+        oildayformmater.dateFormat = "yy. MM. dd (EEEEE) HH:mm"
+        oildayformmater.locale = Locale(identifier: "ko_KR")
+        self.oilDay = oilDayPicker.date
+        self.oilDayTextField.text = oildayformmater.string(from: oilDayPicker.date)
+        self.oilDayTextField.sendActions(for: .editingChanged)
+        self.oilDayTextField.resignFirstResponder()
+        self.oilZonTextField.becomeFirstResponder()
+    }
+    
+    // 날짜 피커뷰 툴바 이전 버튼
+    @objc func oildaytoolbarBefore() {
+        self.oilDayTextField.resignFirstResponder()
+    }
+        
     // 항목 피커뷰 꾸미기 / 와 일단 드롭다운 나와서 선택하는거 된다 성공했다 진짜 미쳤다 별거아닌거 아는데 감격스럽다 증말
     private func configureOilTypePicker() {
         self.oilTypePicker.delegate = self
