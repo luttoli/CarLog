@@ -36,6 +36,7 @@ class OilWriteViewController: UIViewController {
         oilunitToolbar()
         oilnumToolbar()
         oildcToolbar()
+        oilnoteToolbar()
     }
     
     // Textview 테두리
@@ -311,7 +312,38 @@ class OilWriteViewController: UIViewController {
         self.oilNumTextField.becomeFirstResponder()
     }
     
-    // 비고는 어쩔래? 한번 생각해봐 
+    // 비고 툴바 설정
+    private func oilnoteToolbar() {
+        let oilnotetoolbar = UIToolbar()
+        oilnotetoolbar.barStyle = UIBarStyle.default
+        oilnotetoolbar.isTranslucent = true
+        oilnotetoolbar.sizeToFit()
+        
+        let oilnoteSelectBT = UIBarButtonItem(title: "완료", style: .plain, target: self, action: #selector(self.oilnotetoolbarSelect))
+        let flexibleSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
+        let oilnoteNextBT = UIBarButtonItem(title: "다음", style: .plain, target: self, action: #selector(self.oilnotetoolbarNext))
+        let oilnoteBeforeBT = UIBarButtonItem(title: "이전", style: .plain, target: .none, action: #selector(self.oilnotetoolbarBefore))
+        
+        oilnotetoolbar.setItems([oilnoteBeforeBT,oilnoteNextBT,flexibleSpace,oilnoteSelectBT], animated: false)
+        oilnotetoolbar.isUserInteractionEnabled = true
+        
+        oilNoteTextView.inputAccessoryView = oilnotetoolbar
+    }
+    
+    // 비고 툴바 선택 버튼
+    @objc func oilnotetoolbarSelect() {
+        self.oilNoteTextView.resignFirstResponder()
+    }
+    
+    // 비고 툴바 다음 버튼
+    @objc func oilnotetoolbarNext() {
+        self.oilNoteTextView.resignFirstResponder()
+    }
+    
+    // 비고 툴바 이전 버튼
+    @objc func oilnotetoolbarBefore() {
+        self.oilDcTextField.becomeFirstResponder()
+    }
     
     // Done 버튼 클릭
     @IBAction func tapSaveButton(_ sender: Any) {

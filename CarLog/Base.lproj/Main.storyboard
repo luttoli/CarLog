@@ -961,7 +961,7 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="fpo-Ah-3YR">
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="km" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="fpo-Ah-3YR">
                                 <rect key="frame" x="167" y="231" width="236" height="34"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
@@ -983,10 +983,10 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="WxF-cC-8kb">
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="원" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="WxF-cC-8kb">
                                 <rect key="frame" x="167" y="349" width="236" height="34"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
+                                <textInputTraits key="textInputTraits" keyboardType="decimalPad"/>
                             </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="단가" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EX9-kX-anf">
                                 <rect key="frame" x="25" y="355.66666666666669" width="30" height="21"/>
@@ -994,10 +994,10 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="UL3-vM-7es">
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="L" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="UL3-vM-7es">
                                 <rect key="frame" x="167" y="408" width="236" height="34"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
+                                <textInputTraits key="textInputTraits" keyboardType="decimalPad"/>
                             </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="수량" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3sH-a6-WO6">
                                 <rect key="frame" x="25" y="414.66666666666669" width="30" height="21"/>
@@ -1005,10 +1005,10 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="zxF-Bh-Z1I">
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="원" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="zxF-Bh-Z1I">
                                 <rect key="frame" x="167" y="467" width="236" height="34"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
+                                <textInputTraits key="textInputTraits" keyboardType="decimalPad"/>
                             </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="할인" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mzr-bi-wnx">
                                 <rect key="frame" x="25" y="473.66666666666669" width="30" height="21"/>
@@ -1041,7 +1041,6 @@
                             <constraint firstItem="MBJ-ZR-jlR" firstAttribute="trailing" secondItem="QWv-2W-BTv" secondAttribute="trailing" constant="25" id="1RX-vU-gzF"/>
                             <constraint firstItem="WSB-AL-FPC" firstAttribute="top" secondItem="MBJ-ZR-jlR" secondAttribute="top" constant="25" id="1XB-08-c0n"/>
                             <constraint firstItem="WSB-AL-FPC" firstAttribute="leading" secondItem="vgI-yP-oLi" secondAttribute="trailing" constant="79" id="2C8-BV-BAW"/>
-                            <constraint firstItem="MBJ-ZR-jlR" firstAttribute="trailing" secondItem="WxF-cC-8kb" secondAttribute="trailing" constant="25" id="4N5-ja-JLo"/>
                             <constraint firstItem="UL3-vM-7es" firstAttribute="top" secondItem="WxF-cC-8kb" secondAttribute="bottom" constant="25" id="4rT-sK-DpV"/>
                             <constraint firstItem="WSB-AL-FPC" firstAttribute="centerY" secondItem="vgI-yP-oLi" secondAttribute="centerY" id="59d-l6-Hcx"/>
                             <constraint firstItem="QWv-2W-BTv" firstAttribute="leading" secondItem="MBJ-ZR-jlR" secondAttribute="leading" constant="25" id="7IZ-YM-ZmP"/>
@@ -1051,7 +1050,6 @@
                             <constraint firstItem="fpo-Ah-3YR" firstAttribute="leading" secondItem="Cfm-fF-zgZ" secondAttribute="trailing" constant="45" id="FnW-5f-vnT"/>
                             <constraint firstItem="WxF-cC-8kb" firstAttribute="top" secondItem="WWN-wk-ds8" secondAttribute="bottom" constant="25" id="GGh-cn-F1Z"/>
                             <constraint firstItem="MBJ-ZR-jlR" firstAttribute="trailing" secondItem="WMP-0v-bGE" secondAttribute="trailing" constant="25" id="Gyp-KK-rqf"/>
-                            <constraint firstItem="MBJ-ZR-jlR" firstAttribute="trailing" secondItem="UL3-vM-7es" secondAttribute="trailing" constant="25" id="IPy-58-WK0"/>
                             <constraint firstItem="Cfm-fF-zgZ" firstAttribute="leading" secondItem="MBJ-ZR-jlR" secondAttribute="leading" constant="25" id="Ie2-X5-uYh"/>
                             <constraint firstItem="kkH-g3-Oyb" firstAttribute="leading" secondItem="MBJ-ZR-jlR" secondAttribute="leading" constant="25" id="JWl-J6-ThN"/>
                             <constraint firstItem="EX9-kX-anf" firstAttribute="centerY" secondItem="WxF-cC-8kb" secondAttribute="centerY" id="Kf5-1I-oBX"/>
@@ -1061,6 +1059,7 @@
                             <constraint firstItem="3sH-a6-WO6" firstAttribute="leading" secondItem="MBJ-ZR-jlR" secondAttribute="leading" constant="25" id="PXc-4U-lOZ"/>
                             <constraint firstItem="MBJ-ZR-jlR" firstAttribute="trailing" secondItem="WWN-wk-ds8" secondAttribute="trailing" constant="25" id="ROR-9h-0hD"/>
                             <constraint firstItem="mzr-bi-wnx" firstAttribute="leading" secondItem="MBJ-ZR-jlR" secondAttribute="leading" constant="25" id="Rl6-ze-m9F"/>
+                            <constraint firstItem="MBJ-ZR-jlR" firstAttribute="trailing" secondItem="WxF-cC-8kb" secondAttribute="trailing" constant="25" id="UaY-SA-qn4"/>
                             <constraint firstItem="WWN-wk-ds8" firstAttribute="centerY" secondItem="twv-Y6-OUg" secondAttribute="centerY" id="VfX-d1-Fsu"/>
                             <constraint firstItem="kkH-g3-Oyb" firstAttribute="top" secondItem="zxF-Bh-Z1I" secondAttribute="bottom" constant="38" id="Ww4-Cv-EYF"/>
                             <constraint firstItem="3sH-a6-WO6" firstAttribute="centerY" secondItem="UL3-vM-7es" secondAttribute="centerY" id="X25-DS-tda"/>
@@ -1072,9 +1071,10 @@
                             <constraint firstItem="Cfm-fF-zgZ" firstAttribute="centerY" secondItem="fpo-Ah-3YR" secondAttribute="centerY" id="jC9-4m-4ry"/>
                             <constraint firstItem="EX9-kX-anf" firstAttribute="leading" secondItem="MBJ-ZR-jlR" secondAttribute="leading" constant="25" id="mVg-Fa-0fO"/>
                             <constraint firstItem="twv-Y6-OUg" firstAttribute="leading" secondItem="MBJ-ZR-jlR" secondAttribute="leading" constant="25" id="nGl-WW-FjC"/>
-                            <constraint firstItem="MBJ-ZR-jlR" firstAttribute="trailing" secondItem="zxF-Bh-Z1I" secondAttribute="trailing" constant="25" id="pD6-Zr-RnS"/>
                             <constraint firstItem="MBJ-ZR-jlR" firstAttribute="trailing" secondItem="WSB-AL-FPC" secondAttribute="trailing" constant="25" id="s8g-hS-oDq"/>
                             <constraint firstItem="WxF-cC-8kb" firstAttribute="leading" secondItem="EX9-kX-anf" secondAttribute="trailing" constant="112" id="tl3-6J-upt"/>
+                            <constraint firstItem="MBJ-ZR-jlR" firstAttribute="trailing" secondItem="zxF-Bh-Z1I" secondAttribute="trailing" constant="25" id="waa-cb-yMr"/>
+                            <constraint firstItem="MBJ-ZR-jlR" firstAttribute="trailing" secondItem="UL3-vM-7es" secondAttribute="trailing" constant="25" id="wdf-Zz-qQn"/>
                             <constraint firstItem="aa6-8b-i65" firstAttribute="centerY" secondItem="WMP-0v-bGE" secondAttribute="centerY" id="yGH-rt-jNC"/>
                             <constraint firstItem="zxF-Bh-Z1I" firstAttribute="centerY" secondItem="mzr-bi-wnx" secondAttribute="centerY" id="yqf-qu-AEI"/>
                         </constraints>
