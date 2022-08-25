@@ -358,7 +358,7 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="s46-1b-yOy">
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="km" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="s46-1b-yOy">
                                 <rect key="frame" x="148" y="349" width="255" height="34"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
@@ -369,7 +369,7 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Sjr-ix-jhc">
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="km" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Sjr-ix-jhc">
                                 <rect key="frame" x="148" y="408" width="255" height="34"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
@@ -466,15 +466,15 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="arrivalAreaTextfield" destination="c10-oB-KTe" id="11Q-rs-lta"/>
-                        <outlet property="arrivalDayTextfield" destination="mIj-mc-rR8" id="CfV-W0-FLB"/>
-                        <outlet property="arrivalKmTextfield" destination="Sjr-ix-jhc" id="gml-zO-suf"/>
-                        <outlet property="drivingReasonTextfield" destination="hlX-Of-W3w" id="zAk-Ts-lxE"/>
+                        <outlet property="arrivalAreaTextField" destination="c10-oB-KTe" id="11Q-rs-lta"/>
+                        <outlet property="arrivalDayTextField" destination="mIj-mc-rR8" id="CfV-W0-FLB"/>
+                        <outlet property="arrivalKmTextField" destination="Sjr-ix-jhc" id="gml-zO-suf"/>
+                        <outlet property="drivingReasonTextField" destination="hlX-Of-W3w" id="zAk-Ts-lxE"/>
                         <outlet property="noteTextView" destination="PPJ-uj-Dki" id="YrO-Ws-vbM"/>
                         <outlet property="saveButton" destination="ohN-o2-cew" id="x1q-9x-ZBH"/>
-                        <outlet property="startAreaTextfield" destination="4fU-MC-qe9" id="FsC-bx-1WS"/>
-                        <outlet property="startDayTextfield" destination="yMh-tu-2tT" id="usN-rN-bId"/>
-                        <outlet property="startKmTextfield" destination="s46-1b-yOy" id="Hih-4k-pTI"/>
+                        <outlet property="startAreaTextField" destination="4fU-MC-qe9" id="FsC-bx-1WS"/>
+                        <outlet property="startDayTextField" destination="yMh-tu-2tT" id="usN-rN-bId"/>
+                        <outlet property="startKmTextField" destination="s46-1b-yOy" id="Hih-4k-pTI"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gZO-0E-0Qt" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
