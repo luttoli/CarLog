@@ -22,6 +22,7 @@ class DrivingViewController: UIViewController {
         super.viewDidLoad()
         self.configureCollectionView()
         self.loadDrivingList()
+        
         NotificationCenter.default.addObserver(
         self,
         selector: #selector(editDrivingNotification(_:)),

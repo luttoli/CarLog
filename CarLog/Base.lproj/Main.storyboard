@@ -907,7 +907,7 @@
                                             <outlet property="oilPriceLabel" destination="fUB-rO-kta" id="j3Q-uo-AlJ"/>
                                             <outlet property="oilTypeLabel" destination="Zdj-ei-34D" id="S9n-Ny-PhO"/>
                                             <outlet property="oilUnitLabel" destination="Bxq-Oa-Mho" id="r2K-Px-AIH"/>
-                                            <outlet property="oliZonLabel" destination="6QG-Eg-A6L" id="Bg9-Qh-eqp"/>
+                                            <outlet property="oilZonLabel" destination="6QG-Eg-A6L" id="Bg9-Qh-eqp"/>
                                         </connections>
                                     </collectionViewCell>
                                 </cells>
@@ -924,7 +924,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="oliCollectionView" destination="3To-M1-C8S" id="ByN-Bi-z2t"/>
+                        <outlet property="oilCollectionView" destination="3To-M1-C8S" id="ByN-Bi-z2t"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="P49-Tg-1UL" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
