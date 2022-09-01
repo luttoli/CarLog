@@ -21,6 +21,7 @@
 		CF80ECF32896B60600A6E4DC /* DrivingDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF80ECF22896B60600A6E4DC /* DrivingDetailViewController.swift */; };
 		CF80ECF52896C12200A6E4DC /* DrivingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF80ECF42896C12200A6E4DC /* DrivingViewController.swift */; };
 		CF80ECF728A6A88500A6E4DC /* Driving.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF80ECF628A6A88500A6E4DC /* Driving.swift */; };
+		CFACBCC628C0B54700AA540B /* Oil.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFACBCC528C0B54700AA540B /* Oil.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -40,6 +41,7 @@
 		CF80ECF22896B60600A6E4DC /* DrivingDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrivingDetailViewController.swift; sourceTree = "<group>"; };
 		CF80ECF42896C12200A6E4DC /* DrivingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrivingViewController.swift; sourceTree = "<group>"; };
 		CF80ECF628A6A88500A6E4DC /* Driving.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Driving.swift; sourceTree = "<group>"; };
+		CFACBCC528C0B54700AA540B /* Oil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Oil.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -103,6 +105,7 @@
 				CF7E609728B3DE1300442CA9 /* OilCell.swift */,
 				CF4F3E2C28B5199B00D91FD5 /* OilWriteViewController.swift */,
 				CF4F3E2E28B519C200D91FD5 /* OilDetailViewController.swift */,
+				CFACBCC528C0B54700AA540B /* Oil.swift */,
 			);
 			path = Oil;
 			sourceTree = "<group>";
@@ -186,6 +189,7 @@
 				CF80ECF728A6A88500A6E4DC /* Driving.swift in Sources */,
 				CF7E609828B3DE1300442CA9 /* OilCell.swift in Sources */,
 				CF4A52F52893D7C1008D6D17 /* AppDelegate.swift in Sources */,
+				CFACBCC628C0B54700AA540B /* Oil.swift in Sources */,
 				CF4F3E2D28B5199B00D91FD5 /* OilWriteViewController.swift in Sources */,
 				CF4A52F72893D7C1008D6D17 /* SceneDelegate.swift in Sources */,
 				CF80ECEF2896754F00A6E4DC /* DrivingCell.swift in Sources */,

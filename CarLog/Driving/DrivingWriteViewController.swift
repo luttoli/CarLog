@@ -403,19 +403,7 @@ class DrivingWriteViewController: UIViewController {
         self.drivingReasonTextField.becomeFirstResponder()
     }
     
-    //
-    private func configureInputField() {
-        self.startDayTextField.addTarget(self, action: #selector(startDayTextfieldDidChange(_:)), for: .editingChanged)
-        self.arrivalDayTextField.addTarget(self, action: #selector(arrivalDayTextfieldDidChange(_:)), for: .editingChanged)
-        self.startAreaTextField.addTarget(self, action: #selector(startAreaTextfieldDidChange(_:)), for: .editingChanged)
-        self.arrivalAreaTextField.addTarget(self, action: #selector(arrivalAreaTextfieldDidChange(_:)), for: .editingChanged)
-        self.startKmTextField.addTarget(self, action: #selector(startKmTextfieldDidChange(_:)), for: .editingChanged)
-        self.arrivalKmTextField.addTarget(self, action: #selector(arrivalKmTextfieldDidChange(_:)), for: .editingChanged)
-        self.drivingReasonTextField.addTarget(self, action: #selector(drivingReasonTextfieldDidChange(_:)), for: .editingChanged)
-        self.noteTextView.delegate = self
-    }
-    
-    // save버튼 클릭 시 driving 객체를 생성해서 넘김
+    // Done버튼 클릭 시 driving 객체를 생성해서 넘김
     @IBAction func tabSaveButton(_ sender: UIBarButtonItem) {
         guard let startday = self.startDay else { return }
         guard let arrivalday = self.arrivalDay else { return }
@@ -442,6 +430,18 @@ class DrivingWriteViewController: UIViewController {
             )
         }
         self.navigationController?.popViewController(animated: true) // 화면을 전환한다
+    }
+    
+    //
+    private func configureInputField() {
+        self.startDayTextField.addTarget(self, action: #selector(startDayTextfieldDidChange(_:)), for: .editingChanged)
+        self.arrivalDayTextField.addTarget(self, action: #selector(arrivalDayTextfieldDidChange(_:)), for: .editingChanged)
+        self.startAreaTextField.addTarget(self, action: #selector(startAreaTextfieldDidChange(_:)), for: .editingChanged)
+        self.arrivalAreaTextField.addTarget(self, action: #selector(arrivalAreaTextfieldDidChange(_:)), for: .editingChanged)
+        self.startKmTextField.addTarget(self, action: #selector(startKmTextfieldDidChange(_:)), for: .editingChanged)
+        self.arrivalKmTextField.addTarget(self, action: #selector(arrivalKmTextfieldDidChange(_:)), for: .editingChanged)
+        self.drivingReasonTextField.addTarget(self, action: #selector(drivingReasonTextfieldDidChange(_:)), for: .editingChanged)
+        self.noteTextView.delegate = self
     }
     
     // 모든 항목의 텍스트가 입력될때마다 호출되는 메소드
@@ -480,7 +480,7 @@ class DrivingWriteViewController: UIViewController {
     
     // 등록버튼에 활성화 여부를 판단하는 메서드
     private func validateInputField() {
-        self.saveButton.isEnabled = !(self.startDayTextField.text?.isEmpty ?? true) && !(self.arrivalDayTextField.text?.isEmpty ?? true) && !(self.startAreaTextField.text?.isEmpty ?? true) && !(self.arrivalAreaTextField.text?.isEmpty ?? true) && !(startKmTextField.text?.isEmpty ?? true) && !(self.arrivalKmTextField.text?.isEmpty ?? true) && !(self.drivingReasonTextField.text?.isEmpty ?? true) && !self.noteTextView.text.isEmpty
+        self.saveButton.isEnabled = !(self.startDayTextField.text?.isEmpty ?? true) && !(self.arrivalDayTextField.text?.isEmpty ?? true) && !(self.startAreaTextField.text?.isEmpty ?? true) && !(self.arrivalAreaTextField.text?.isEmpty ?? true) && !(self.startKmTextField.text?.isEmpty ?? true) && !(self.arrivalKmTextField.text?.isEmpty ?? true) && !(self.drivingReasonTextField.text?.isEmpty ?? true) && !self.noteTextView.text.isEmpty
     }
 }
 

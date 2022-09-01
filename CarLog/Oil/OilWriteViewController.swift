@@ -7,6 +7,11 @@
 
 import UIKit
 
+// 델리게이트를 통해서 운행일지 리스트 화면에 객체 전달
+protocol OilWriteViewDelegate: AnyObject {
+    func didSelectReigster(oil: Oil)
+}
+
 class OilWriteViewController: UIViewController {
 
     @IBOutlet weak var oilDayTextField: UITextField!
@@ -26,6 +31,8 @@ class OilWriteViewController: UIViewController {
     private let oilTypePicker = UIPickerView()
     let oiltype = ["휘발유", "고급 휘발유", "경유", "LPG", "전기"]
     
+    weak var delegate: OilWriteViewDelegate?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         configureNoteTextview()
@@ -37,6 +44,7 @@ class OilWriteViewController: UIViewController {
         oilnumToolbar()
         oildcToolbar()
         oilnoteToolbar()
+        self.saveButton.isEnabled = false // 처음 진입 시 입력이 하나도 안되어있을테니 비활성화 처리
     }
     
     // Textview 테두리
@@ -345,8 +353,19 @@ class OilWriteViewController: UIViewController {
         self.oilDcTextField.becomeFirstResponder()
     }
     
-    // Done 버튼 클릭
-    @IBAction func tapSaveButton(_ sender: Any) {
+    // Done 버튼 클릭 시 객체 생성해서 넘김
+    @IBAction func tapSaveButton(_ sender: UIBarButtonItem) {
+        guard let oilday = self.oilDay else { return }
+        guard let oilzon = self.oilZonTextField.text else { return }
+        guard let oilkm = self.oilKmTextField.text else { return }
+        guard let oiltype = self.oilTypeTextField.text else { return }
+        guard let oilunit = self.oilUnitTextField.text else { return }
+        guard let oilnum = self.oilNumTextField.text else { return }
+        guard let oildc = self.oilDcTextField.text else { return }
+        guard let oilnote = self.oilNoteTextView.text else { return }
+        let oil = Oil(oilday: oilday, oilzon: oilzon, oilkm: oilkm, oiltype: oiltype, oilunit: oilunit, oilnum: oilnum, oildc: oildc, oilnote: oilnote)
+        
+        self.navigationController?.popViewController(animated: true)
     }
     
     // 빈 화면을 터치하면 키보드를 내려주는 메서드
