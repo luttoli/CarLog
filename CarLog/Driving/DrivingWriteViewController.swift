@@ -473,14 +473,14 @@ class DrivingWriteViewController: UIViewController {
         self.validateInputField()
     }
     
-    // 빈 화면 클릭 시 키보드 닫힘처리
-    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        self.view.endEditing(true)
-    }
-    
     // 등록버튼에 활성화 여부를 판단하는 메서드
     private func validateInputField() {
         self.saveButton.isEnabled = !(self.startDayTextField.text?.isEmpty ?? true) && !(self.arrivalDayTextField.text?.isEmpty ?? true) && !(self.startAreaTextField.text?.isEmpty ?? true) && !(self.arrivalAreaTextField.text?.isEmpty ?? true) && !(self.startKmTextField.text?.isEmpty ?? true) && !(self.arrivalKmTextField.text?.isEmpty ?? true) && !(self.drivingReasonTextField.text?.isEmpty ?? true) && !self.noteTextView.text.isEmpty
+    }
+    
+    // 빈 화면 클릭 시 키보드 닫힘처리
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.view.endEditing(true)
     }
 }
 
