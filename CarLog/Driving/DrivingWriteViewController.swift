@@ -87,14 +87,6 @@ class DrivingWriteViewController: UIViewController {
         return formatter.string(from: date)
     }
     
-    // Textview border
-    private func configureNoteTextview() {
-        let borderColor = UIColor(red: 220/225, green: 220/225, blue: 220/225, alpha: 1.0)
-        self.noteTextView.layer.borderColor = borderColor.cgColor
-        self.noteTextView.layer.borderWidth = 2
-        self.noteTextView.layer.cornerRadius = 5.0
-    }
-    
     // 출발일시 날짜 피커뷰 꾸미기
     private func configureStartDayPicker() {
         self.startDayPicker.datePickerMode = .dateAndTime
@@ -401,6 +393,14 @@ class DrivingWriteViewController: UIViewController {
     // 비고 툴바 이전 버튼
     @objc func notetoolbarBefore() {
         self.drivingReasonTextField.becomeFirstResponder()
+    }
+    
+    // Textview border
+    private func configureNoteTextview() {
+        let borderColor = UIColor(red: 220/225, green: 220/225, blue: 220/225, alpha: 1.0)
+        self.noteTextView.layer.borderColor = borderColor.cgColor
+        self.noteTextView.layer.borderWidth = 2
+        self.noteTextView.layer.cornerRadius = 5.0
     }
     
     // Done버튼 클릭 시 driving 객체를 생성해서 넘김

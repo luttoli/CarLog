@@ -25,12 +25,15 @@ class OilWriteViewController: UIViewController {
     
     @IBOutlet weak var saveButton: UIBarButtonItem!
     
+    // 주유일시 날짜 피커
     private let oilDayPicker = UIDatePicker()
     private var oilDay: Date?
     
+    // 주유타입 데이터피커 항목
     private let oilTypePicker = UIPickerView()
     let oiltype = ["휘발유", "고급 휘발유", "경유", "LPG", "전기"]
     
+    // 프로퍼티 정의
     weak var delegate: OilWriteViewDelegate?
     
     override func viewDidLoad() {
@@ -44,15 +47,8 @@ class OilWriteViewController: UIViewController {
         oilnumToolbar()
         oildcToolbar()
         oilnoteToolbar()
+        self.configureInputField()
         self.saveButton.isEnabled = false // 처음 진입 시 입력이 하나도 안되어있을테니 비활성화 처리
-    }
-    
-    // Textview 테두리
-    private func configureNoteTextview() {
-        let borderColor = UIColor(red: 220/225, green: 220/225, blue: 220/225, alpha: 1.0)
-        self.oilNoteTextView.layer.borderColor = borderColor.cgColor
-        self.oilNoteTextView.layer.borderWidth = 2
-        self.oilNoteTextView.layer.cornerRadius = 5.0
     }
     
     // 주유일시 날짜 피커뷰 꾸미기
@@ -353,6 +349,14 @@ class OilWriteViewController: UIViewController {
         self.oilDcTextField.becomeFirstResponder()
     }
     
+    // Textview 테두리
+    private func configureNoteTextview() {
+        let borderColor = UIColor(red: 220/225, green: 220/225, blue: 220/225, alpha: 1.0)
+        self.oilNoteTextView.layer.borderColor = borderColor.cgColor
+        self.oilNoteTextView.layer.borderWidth = 2
+        self.oilNoteTextView.layer.cornerRadius = 5.0
+    }
+    
     // Done 버튼 클릭 시 객체 생성해서 넘김
     @IBAction func tapSaveButton(_ sender: UIBarButtonItem) {
         guard let oilday = self.oilDay else { return }
@@ -366,6 +370,52 @@ class OilWriteViewController: UIViewController {
         let oil = Oil(oilday: oilday, oilzon: oilzon, oilkm: oilkm, oiltype: oiltype, oilunit: oilunit, oilnum: oilnum, oildc: oildc, oilnote: oilnote)
         
         self.navigationController?.popViewController(animated: true)
+    }
+    
+    //
+    private func configureInputField() {
+        self.oilDayTextField.addTarget(self, action: #selector(oilDayTextFieldDidChange(_:)), for: .editingChanged)
+        self.oilZonTextField.addTarget(self, action: #selector(oilZonTextFieldDidChange(_:)), for: .editingChanged)
+        self.oilKmTextField.addTarget(self, action: #selector(oilKmTextFieldDidChange(_:)), for: .editingChanged)
+        self.oilTypeTextField.addTarget(self, action: #selector(oilTypeFieldDidChange(_:)), for: .editingChanged)
+        self.oilUnitTextField.addTarget(self, action: #selector(oilUnitTextFieldDidChange(_:)), for: .editingChanged)
+        self.oilNumTextField.addTarget(self, action: #selector(oilNumTextFieldDidChange(_:)), for: .editingChanged)
+        self.oilDcTextField.addTarget(self, action: #selector(oilDcTextFieldDidChange(_:)), for: .editingChanged)
+        self.oilNoteTextView.delegate = self
+    }
+    
+    // 모든 항목의 텍스트가 입력될 떄마다 호출되는 메소드
+    @objc private func oilDayTextFieldDidChange(_ textField: UITextField) {
+        self.validateInputField()
+    }
+    
+    @objc private func oilZonTextFieldDidChange(_ textField: UITextField) {
+        self.validateInputField()
+    }
+    
+    @objc private func oilKmTextFieldDidChange(_ textField: UITextField) {
+        self.validateInputField()
+    }
+    
+    @objc private func oilTypeFieldDidChange(_ textField: UITextField) {
+        self.validateInputField()
+    }
+    
+    @objc private func oilUnitTextFieldDidChange(_ textField: UITextField) {
+        self.validateInputField()
+    }
+    
+    @objc private func oilNumTextFieldDidChange(_ textField: UITextField) {
+        self.validateInputField()
+    }
+    
+    @objc private func oilDcTextFieldDidChange(_ textField: UITextField) {
+        self.validateInputField()
+    }
+    
+    // 등록버튼에 활성화 여부 판단하는 메서드
+    private func validateInputField() {
+        self.saveButton.isEnabled = !(self.oilDayTextField.text?.isEmpty ?? true) && !(self.oilZonTextField.text?.isEmpty ?? true) && !(self.oilKmTextField.text?.isEmpty ?? true) && !(self.oilTypeTextField.text?.isEmpty ?? true) && !(self.oilUnitTextField.text?.isEmpty ?? true) && !(self.oilNumTextField.text?.isEmpty ?? true) && !self.oilNoteTextView.text.isEmpty
     }
     
     // 빈 화면을 터치하면 키보드를 내려주는 메서드
@@ -397,4 +447,10 @@ extension OilWriteViewController: UIPickerViewDataSource, UIPickerViewDelegate {
     }
 }
 
+// textview에 텍스트가 입력될 때 마다 호출되는 메서드
+extension OilWriteViewController: UITextViewDelegate {
+    func textViewDidChange(_ textView: UITextView) {
+        self.validateInputField()
+    }
+}
    
