@@ -60,8 +60,9 @@ extension OilViewController: UICollectionViewDataSource {
         let oilunitint = Int(cell.oilUnitLabel.text!)
         let oilnumint = Int(cell.oilNumLabel.text!)
         let oildcint = Int(oil.oildc)
-        
         cell.oilPriceLabel.text = String((oilunitint! * oilnumint!) - oildcint!)
+        
+        cell.oilMileageLabel.text = oil.oilkm
         
         return cell
     }

@@ -782,7 +782,7 @@
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="mTc-p4-EbT" customClass="OilCell" customModule="CarLog" customModuleProvider="target">
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="OilCell" id="mTc-p4-EbT" customClass="OilCell" customModule="CarLog" customModuleProvider="target">
                                         <rect key="frame" x="14" y="0.0" width="400" height="72"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="4sW-vn-6d6">
@@ -901,11 +901,11 @@
                                         <size key="customSize" width="400" height="72"/>
                                         <connections>
                                             <outlet property="oilDayLabel" destination="vsO-DH-63W" id="eX5-oW-e1s"/>
-                                            <outlet property="oilKmLabel" destination="Zdj-ei-34D" id="ayV-Mn-YZD"/>
+                                            <outlet property="oilKmLabel" destination="hhh-nS-OHA" id="al4-pu-vtD"/>
                                             <outlet property="oilMileageLabel" destination="KeN-be-3AU" id="NBM-TH-bet"/>
                                             <outlet property="oilNumLabel" destination="Kv4-fZ-V0e" id="2MI-ou-Nh2"/>
                                             <outlet property="oilPriceLabel" destination="fUB-rO-kta" id="j3Q-uo-AlJ"/>
-                                            <outlet property="oilTypeLabel" destination="Zdj-ei-34D" id="S9n-Ny-PhO"/>
+                                            <outlet property="oilTypeLabel" destination="Zdj-ei-34D" id="cJg-3e-AyU"/>
                                             <outlet property="oilUnitLabel" destination="Bxq-Oa-Mho" id="r2K-Px-AIH"/>
                                             <outlet property="oilZonLabel" destination="6QG-Eg-A6L" id="Bg9-Qh-eqp"/>
                                         </connections>
