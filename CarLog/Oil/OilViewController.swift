@@ -9,21 +9,22 @@ import UIKit
 
 class OilViewController: UIViewController {
 
-    @IBOutlet weak var oilCollectionView: UICollectionView!
+    @IBOutlet weak var oilcollectionview: UICollectionView!
     
     private var oilList = [Oil]()
-     
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         self.configureCollectionView()
     }
     
+    // 운행일지 리스트 배열에 추가된 일지를 콜랙션뷰에 추가
     private func configureCollectionView() {
-        self.oilCollectionView.collectionViewLayout = UICollectionViewFlowLayout()
-        self.oilCollectionView.contentInset = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
-        self.oilCollectionView.delegate = self
-        self.oilCollectionView.dataSource = self
+        // 코드로 콜렉션뷰 레이아웃 구성하기
+        self.oilcollectionview.collectionViewLayout = UICollectionViewFlowLayout()
+        self.oilcollectionview.contentInset = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
+        self.oilcollectionview.delegate = self
+        self.oilcollectionview.dataSource = self
     }
     
     // 작성화면의 이동은 세그웨이를 통해서 이동하기 떄문에 prepare 이용
@@ -42,11 +43,14 @@ class OilViewController: UIViewController {
     }
 }
 
+// UICollectionViewDataSource 채택하기 + 필수 메서드
 extension OilViewController: UICollectionViewDataSource {
+    // 필수 메서드 : numberOfSections 셀의 개수를 물음, 리스트 개수만큼
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return self.oilList.count
     }
     
+    // 필수 메서드 : cellForItemAt 컬렉션뷰에 지정된 위치에 표시할 셀을 요청하는 메서드
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "OilCell", for: indexPath) as? OilCell else { return UICollectionViewCell() }
         let oil = self.oilList[indexPath.row]
@@ -74,9 +78,11 @@ extension OilViewController: UICollectionViewDelegateFlowLayout {
     }
 }
 
+// drivingWriteUIViewContoller 채택하라
 extension OilViewController: OilWriteViewDelegate {
-    func didSelectReigster(oil: Oil) {
+    // 일지가 작성되면 내용이 담겨져있는 객체가 전달됨
+    func didSelectReigster(oil: Oil) { // 작성될때마나다 추가
         self.oilList.append(oil)
-        self.oilCollectionView.reloadData()
+        self.oilcollectionview.reloadData()
     }
 }

@@ -158,7 +158,7 @@ extension DrivingViewController: UICollectionViewDelegate {
 
 // drivingWriteUIViewContoller 채택하라
 extension DrivingViewController: DrivingWriteViewDelegate {
-    // 일지가 작성이되면 내용이 담겨져있는 객체가 전달됨
+    // 일지가 작성되면 내용이 담겨져있는 객체가 전달됨
     func didSelectReigster(driving: Driving) {
         self.drivingList.append(driving) // 작성될때마다 추가
         // 출발날짜 비교해서 최근일이 맨 위로 올라가게 저장하는 방법

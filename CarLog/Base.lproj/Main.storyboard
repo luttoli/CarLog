@@ -924,7 +924,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="oilCollectionView" destination="3To-M1-C8S" id="ByN-Bi-z2t"/>
+                        <outlet property="oilcollectionview" destination="3To-M1-C8S" id="ByN-Bi-z2t"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="P49-Tg-1UL" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
