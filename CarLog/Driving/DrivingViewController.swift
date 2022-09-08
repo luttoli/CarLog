@@ -12,9 +12,9 @@ class DrivingViewController: UIViewController {
 
     @IBOutlet weak var drivingcollectionview: UICollectionView!
     
-    private var drivingList = [Driving]() {
+    private var drivingList = [Driving]() { // drivingList를 프로퍼티 옵저버로 만듦
         didSet {
-            self.saveDrivingList()
+            self.saveDrivingList() // 추가되거나 변경되면 유저디퍼스에 저장
         }
     }
     
@@ -58,7 +58,7 @@ class DrivingViewController: UIViewController {
         }
     }
     
-    //
+    // 기기 저장 / userDefaults 딕셔너리 배열 형태로 저장
     private func saveDrivingList() {
         let date = self.drivingList.map {
             [

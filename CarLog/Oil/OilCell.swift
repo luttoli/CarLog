@@ -16,7 +16,6 @@ class OilCell: UICollectionViewCell {
     @IBOutlet weak var oilUnitLabel: UILabel!
     @IBOutlet weak var oilNumLabel: UILabel!
     @IBOutlet weak var oilPriceLabel: UILabel!
-    @IBOutlet weak var oilMileageLabel: UILabel!
     
     required init?(coder: NSCoder) {
         super.init(coder: coder)

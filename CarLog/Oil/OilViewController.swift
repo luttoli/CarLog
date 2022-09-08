@@ -11,11 +11,16 @@ class OilViewController: UIViewController {
 
     @IBOutlet weak var oilcollectionview: UICollectionView!
     
-    private var oilList = [Oil]()
+    private var oilList = [Oil]() { // oilList를 프로퍼티 옵저버로 만듦
+        didSet {
+            self.saveOilList() // 추가되거나 변경되면 유저디퍼스에 저장
+        }
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
         self.configureCollectionView()
+        self.loadOilList()
     }
     
     // 운행일지 리스트 배열에 추가된 일지를 콜랙션뷰에 추가
@@ -32,6 +37,46 @@ class OilViewController: UIViewController {
         if let writeOilViewContoller = segue.destination as? OilWriteViewController {
             writeOilViewContoller.delegate = self
         }
+    }
+    
+    // 기기 저장 / userDefaults 딕셔너리 배열 형태로 저장
+    private func saveOilList() {
+        let date = self.oilList.map {
+            [
+                "oilday": $0.oilday,
+                "oilzon": $0.oilzon,
+                "oilkm": $0.oilkm,
+                "oiltype": $0.oiltype,
+                "oilunit": $0.oilunit,
+                "oilnum": $0.oilnum,
+                "oildc": $0.oildc,
+                "oilnote": $0.oilnote
+            ]
+        }
+        let userDefaults = UserDefaults.standard // 접근가능
+        userDefaults.set(date, forKey: "oilList")
+    }
+    // 저장된 값을 불러오는 메서드
+    private func loadOilList() {
+        let userDefaults = UserDefaults.standard // 접근
+        guard let data = userDefaults.object(forKey: "oilList") as? [[String: Any]] else { return }// 키값을 넘겨줘서 리스트를 가져옴 / 오브젝트는 any타입이기 때문에 딕셔너리 배열 형태로 타입케스팅 / 타입케스팅 실패하면 nil이 될수도 있으니까 guard문으로 옵셔널 바인딩
+        self.oilList = data.compactMap { // 고차함수로 리스트 타입 배열이 되게 맵핑
+            guard let oilday = $0["oilday"] as? Date else {
+                return nil }
+            guard let oilzon = $0["oilzon"] as? String else {
+                return nil }
+            guard let oilkm = $0["oilkm"] as? String else {
+                return nil }
+            guard let oiltype = $0["oiltype"] as? String else {
+                return nil }
+            guard let oilunit = $0["oilunit"] as? String else {
+                return nil }
+            guard let oilnum = $0["oilnum"] as? String else { return nil }
+            guard let oildc = $0["oildc"] as? String else { return nil }
+            guard let oilnote = $0["oilnote"] as? String else { return nil }
+            return Oil(oilday: oilday, oilzon: oilzon, oilkm: oilkm, oiltype: oiltype, oilunit: oilunit, oilnum: oilnum, oildc: oildc, oilnote: oilnote)
+        }
+        
     }
     
     // date타입 전달받으면 문자열로 전환하는 메서드
@@ -65,8 +110,6 @@ extension OilViewController: UICollectionViewDataSource {
         let oilnumint = Int(cell.oilNumLabel.text!)
         let oildcint = Int(oil.oildc)
         cell.oilPriceLabel.text = String((oilunitint! * oilnumint!) - oildcint!)
-        
-        cell.oilMileageLabel.text = oil.oilkm
         
         return cell
     }
