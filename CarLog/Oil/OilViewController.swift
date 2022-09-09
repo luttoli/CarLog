@@ -56,6 +56,7 @@ class OilViewController: UIViewController {
         let userDefaults = UserDefaults.standard // 접근가능
         userDefaults.set(date, forKey: "oilList")
     }
+    
     // 저장된 값을 불러오는 메서드
     private func loadOilList() {
         let userDefaults = UserDefaults.standard // 접근
@@ -76,7 +77,7 @@ class OilViewController: UIViewController {
             guard let oilnote = $0["oilnote"] as? String else { return nil }
             return Oil(oilday: oilday, oilzon: oilzon, oilkm: oilkm, oiltype: oiltype, oilunit: oilunit, oilnum: oilnum, oildc: oildc, oilnote: oilnote)
         }
-        
+        // 설명 더 있는데 정리할것
     }
     
     // date타입 전달받으면 문자열로 전환하는 메서드

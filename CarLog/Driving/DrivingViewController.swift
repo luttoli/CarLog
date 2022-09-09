@@ -76,7 +76,7 @@ class DrivingViewController: UIViewController {
         userDefaults.set(date, forKey: "drivingList")
     }
     
-    //
+    // 저장된 값을 불러오는 메서드
     private func loadDrivingList() {
         let userDefaults = UserDefaults.standard
         guard let data = userDefaults.object(forKey: "drivingList") as? [[String: Any]] else {
@@ -140,7 +140,7 @@ extension DrivingViewController: UICollectionViewDataSource {
 // 유아이콜랙션뷰델리게이터 플로우레이아웃 콜렉션뷰의 레이아웃 구성
 extension DrivingViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: (UIScreen.main.bounds.width) - 20, height: 102)
+        return CGSize(width: (UIScreen.main.bounds.width) - 20, height: 132)
     }
 }
 
