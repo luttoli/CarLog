@@ -7,6 +7,7 @@
 
 import UIKit
 
+// 작성된 주유일지 리스트 화면
 class OilViewController: UIViewController {
 
     @IBOutlet weak var oilcollectionview: UICollectionView!
@@ -78,6 +79,8 @@ class OilViewController: UIViewController {
             return Oil(oilday: oilday, oilzon: oilzon, oilkm: oilkm, oiltype: oiltype, oilunit: oilunit, oilnum: oilnum, oildc: oildc, oilnote: oilnote)
         }
         // 설명 더 있는데 정리할것
+        // 주유날짜 비교해서 최근날이 맨 위로 올라가게
+        self.oilList = self.oilList.sorted(by: {$0.oilday.compare($1.oilday) == .orderedDescending})
     }
     
     // date타입 전달받으면 문자열로 전환하는 메서드
@@ -108,9 +111,9 @@ extension OilViewController: UICollectionViewDataSource {
         cell.oilNumLabel.text = oil.oilnum
         
         let oilunitint = Int(cell.oilUnitLabel.text!)
-        let oilnumint = Int(cell.oilNumLabel.text!)
+        let oilnumint = Double(cell.oilNumLabel.text!)
         let oildcint = Int(oil.oildc)
-        cell.oilPriceLabel.text = String((oilunitint! * oilnumint!) - oildcint!)
+        cell.oilPriceLabel.text = String((oilunitint! * Int(oilnumint!)) - oildcint!)
         
         return cell
     }
