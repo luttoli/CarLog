@@ -368,8 +368,9 @@ class OilWriteViewController: UIViewController {
         guard let oildc = self.oilDcTextField.text else { return }
         guard let oilnote = self.oilNoteTextView.text else { return }
         let oil = Oil(oilday: oilday, oilzon: oilzon, oilkm: oilkm, oiltype: oiltype, oilunit: oilunit, oilnum: oilnum, oildc: oildc, oilnote: oilnote)
+        
         self.delegate?.didSelectReigster(oil: oil)
-        self.navigationController?.popViewController(animated: true)
+        self.navigationController?.popViewController(animated: true) // 화면 전환
     }
     
     //

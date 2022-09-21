@@ -80,7 +80,9 @@ class OilViewController: UIViewController {
         }
         // 설명 더 있는데 정리할것
         // 주유날짜 비교해서 최근날이 맨 위로 올라가게
-        self.oilList = self.oilList.sorted(by: {$0.oilday.compare($1.oilday) == .orderedDescending})
+        self.oilList = self.oilList.sorted(by: {
+            $0.oilday.compare($1.oilday) == .orderedDescending
+        })
     }
     
     // date타입 전달받으면 문자열로 전환하는 메서드
@@ -110,10 +112,11 @@ extension OilViewController: UICollectionViewDataSource {
         cell.oilUnitLabel.text = oil.oilunit
         cell.oilNumLabel.text = oil.oilnum
         
+        // 수량 소수점 입력은 되는데 계산이 안됨... + 최종금액 반올림, 버림 처리해야함 근데 흠... 둘다 될라나..?
         let oilunitint = Int(cell.oilUnitLabel.text!)
-        let oilnumint = Double(cell.oilNumLabel.text!)
+        let oilnumdouble = Double(cell.oilNumLabel.text!)
         let oildcint = Int(oil.oildc)
-        cell.oilPriceLabel.text = String((oilunitint! * Int(oilnumint!)) - oildcint!)
+        cell.oilPriceLabel.text = String((oilunitint! * Int(oilnumdouble!)) - oildcint!)
         
         return cell
     }
@@ -130,6 +133,12 @@ extension OilViewController: OilWriteViewDelegate {
     // 일지가 작성되면 내용이 담겨져있는 객체가 전달됨
     func didSelectReigster(oil: Oil) { // 작성될때마나다 추가
         self.oilList.append(oil)
+        self.oilList = self.oilList.sorted(by: {
+            $0.oilday.compare($1.oilday) == .orderedDescending
+        })
         self.oilcollectionview.reloadData()
     }
 }
+
+// 주유 리스트 소트 바로 안됨
+// 금액 계산될때 수량 정수로 계산됨
