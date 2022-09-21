@@ -88,7 +88,7 @@ class OilViewController: UIViewController {
     // date타입 전달받으면 문자열로 전환하는 메서드
     private func dateTostring(date: Date) -> String {
         let formatter = DateFormatter()
-        formatter.dateFormat = "yy. MM. dd (EEEEE) HH:mm"
+        formatter.dateFormat = "yy. MM. dd (EEEEE)"
         formatter.locale = Locale(identifier: "ko_KR")
         return formatter.string(from: date)
     }
@@ -124,7 +124,7 @@ extension OilViewController: UICollectionViewDataSource {
 
 extension OilViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: (UIScreen.main.bounds.width) - 20, height: 110)
+        return CGSize(width: (UIScreen.main.bounds.width) - 20, height: 90)
     }
 }
 

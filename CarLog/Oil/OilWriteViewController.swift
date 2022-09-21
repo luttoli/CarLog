@@ -53,7 +53,7 @@ class OilWriteViewController: UIViewController {
     
     // 주유일시 날짜 피커뷰 꾸미기
     private func configureOilDayPicker() {
-        self.oilDayPicker.datePickerMode = .dateAndTime
+        self.oilDayPicker.datePickerMode = .date
         self.oilDayPicker.preferredDatePickerStyle = .wheels
         self.oilDayPicker.addTarget(self, action: #selector(oildayPickerValueDidChange(_:)), for: .valueChanged)
         // addTarget = ?? 유아이컨트롤러 객체가 이벤트에 응답하는 방식을 설정하는 메서드 / target = 해당 뷰컨트롤러에서 처리 self / action = 이벤트가 발생하였을때 그에 응답하여 호출될 메서드를 selector로 넘겨주면 되는데 넣어서 넘겨줄 메서드 생성
@@ -79,7 +79,7 @@ class OilWriteViewController: UIViewController {
     // 주유일시 날짜 피커뷰의 addtarget의 selector / 형식 전달하기
     @objc private func oildayPickerValueDidChange(_ datePicker: UIDatePicker) {
         let oildayformmater = DateFormatter()
-        oildayformmater.dateFormat = "yy. MM. dd (EEEEE) HH:mm"
+        oildayformmater.dateFormat = "yy. MM. dd (EEEEE)"
         oildayformmater.locale = Locale(identifier: "ko_KR")
         self.oilDay = oilDayPicker.date
         self.oilDayTextField.text = oildayformmater.string(from: oilDayPicker.date)
@@ -89,7 +89,7 @@ class OilWriteViewController: UIViewController {
     // 주유일시 날짜 피커뷰 툴바 선택 버튼
     @objc func oildaytoolbarSelect(_ datePicker: UIDatePicker) {
         let oildayformmater = DateFormatter()
-        oildayformmater.dateFormat = "yy. MM. dd (EEEEE) HH:mm"
+        oildayformmater.dateFormat = "yy. MM. dd (EEEEE)"
         oildayformmater.locale = Locale(identifier: "ko_KR")
         self.oilDay = oilDayPicker.date
         self.oilDayTextField.text = oildayformmater.string(from: oilDayPicker.date)
