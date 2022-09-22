@@ -114,7 +114,7 @@ extension OilViewController: UICollectionViewDataSource {
         
         // 수량 소수점 입력은 되는데 계산이 안됨... + 최종금액 반올림, 버림 처리해야함 근데 흠... 둘다 될라나..?
         let oilunitint = Int(cell.oilUnitLabel.text!)
-        let oilnumdouble = Double(cell.oilNumLabel.text!)
+        let oilnumdouble = Float(cell.oilNumLabel.text!)
         let oildcint = Int(oil.oildc)
         cell.oilPriceLabel.text = String((oilunitint! * Int(oilnumdouble!)) - oildcint!)
         
@@ -125,6 +125,17 @@ extension OilViewController: UICollectionViewDataSource {
 extension OilViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return CGSize(width: (UIScreen.main.bounds.width) - 20, height: 90)
+    }
+}
+
+// didSelectItemAt = 특정셀이 선택되었음을 알리는 메서드
+extension OilViewController: UICollectionViewDelegate {
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        guard let viewController = self.storyboard?.instantiateViewController(identifier: "OilDetailViewController") as? OilDetailViewController else { return }
+        let oil = self.oilList[indexPath.row]
+        viewController.oil = oil
+        viewController.indexPath = indexPath
+        self.navigationController?.pushViewController(viewController, animated: true)
     }
 }
 
