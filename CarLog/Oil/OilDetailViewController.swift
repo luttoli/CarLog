@@ -73,12 +73,25 @@ class OilDetailViewController: UIViewController {
         return formatter.string(from: date)
     }
     
+    @objc func editOilNOtification(_ notification: Notification) {
+        guard let oil = notification.object as? Oil else { return }
+        guard let row = notification.userInfo?["indexPath.row"] as? Int else { return }
+        self.oil = oil
+        self.configureView()
+    }
+    
     // 수정
     @IBAction func tabEditButton(_ sender: Any) {
         guard let viewController = self.storyboard?.instantiateViewController(identifier: "OilWriteViewController") as? OilWriteViewController else { return }
         guard let indexPath = self.indexPath else { return }
         guard let oil = self.oil else { return }
         viewController.oilEditorMode = .edit(indexPath, oil)
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(editOilNOtification(_:)),
+            name: NSNotification.Name("editOil"),
+            object: nil
+        )
         self.navigationController?.pushViewController(viewController, animated: true)
     }
     
@@ -87,5 +100,9 @@ class OilDetailViewController: UIViewController {
         guard let indexPath = self.indexPath else { return }
         self.delegate?.didSelectDelete(indexPath: indexPath)
         self.navigationController?.popViewController(animated: true)
+    }
+    
+    deinit {
+        NotificationCenter.default.removeObserver(self)
     }
 }

@@ -404,6 +404,20 @@ class OilWriteViewController: UIViewController {
         guard let oilnote = self.oilNoteTextView.text else { return }
         let oil = Oil(oilday: oilday, oilzon: oilzon, oilkm: oilkm, oiltype: oiltype, oilunit: oilunit, oilnum: oilnum, oildc: oildc, oilnote: oilnote)
         
+        switch self.oilEditorMode {
+        case .new:
+            self.delegate?.didSelectReigster(oil: oil)
+            
+        case let .edit(indexPath, _):
+            NotificationCenter.default.post(
+                name: NSNotification.Name("editOil"),
+                object: oil,
+                userInfo: [
+                    "indexPath.row": indexPath.row
+                ]
+            )
+        }
+        
         self.delegate?.didSelectReigster(oil: oil)
         self.navigationController?.popViewController(animated: true) // 화면 전환
     }
