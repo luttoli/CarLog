@@ -135,6 +135,7 @@ extension OilViewController: UICollectionViewDelegate {
         let oil = self.oilList[indexPath.row]
         viewController.oil = oil
         viewController.indexPath = indexPath
+        viewController.delegate = self // ??? 이게 선택된 델리게이트 받는 건가
         self.navigationController?.pushViewController(viewController, animated: true)
     }
 }
@@ -151,5 +152,10 @@ extension OilViewController: OilWriteViewDelegate {
     }
 }
 
-// 주유 리스트 소트 바로 안됨
-// 금액 계산될때 수량 정수로 계산됨
+// 상세화면에서 삭제한 인덱스페치 로우 값을 리스트에서도 삭제
+extension OilViewController: OilDetailViewDelegate {
+    func didSelectDelete(indexPath: IndexPath) {
+        self.oilList.remove(at: indexPath.row)
+        self.oilcollectionview.deleteItems(at: [indexPath])
+    }
+}
