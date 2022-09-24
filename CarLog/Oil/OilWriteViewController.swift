@@ -7,6 +7,11 @@
 
 import UIKit
 
+enum OilEditorMode {
+    case new
+    case edit(IndexPath, Oil)
+}
+
 // 델리게이트를 통해서 운행일지 리스트 화면에 객체 전달
 protocol OilWriteViewDelegate: AnyObject {
     func didSelectReigster(oil: Oil)
@@ -36,6 +41,8 @@ class OilWriteViewController: UIViewController {
     // 프로퍼티 정의
     weak var delegate: OilWriteViewDelegate?
     
+    var oilEditorMode: OilEditorMode = .new
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         configureNoteTextview()
@@ -48,7 +55,35 @@ class OilWriteViewController: UIViewController {
         oildcToolbar()
         oilnoteToolbar()
         self.configureInputField()
+        self.configureEditMode()
         self.saveButton.isEnabled = false // 처음 진입 시 입력이 하나도 안되어있을테니 비활성화 처리
+    }
+    
+    //
+    private func configureEditMode() {
+        switch self.oilEditorMode {
+        case let .edit(_, oil):
+            self.oilDayTextField.text = self.dateTostring(date: oil.oilday)
+            self.oilDay = oil.oilday
+            self.oilZonTextField.text = oil.oilzon
+            self.oilKmTextField.text = oil.oilkm
+            self.oilTypeTextField.text = oil.oiltype
+            self.oilUnitTextField.text = oil.oilunit
+            self.oilNumTextField.text = oil.oilnum
+            self.oilDcTextField.text = oil.oildc
+            self.oilNoteTextView.text = oil.oilnote
+        
+        default:
+            break
+        }
+    }
+    
+    // date타입 전달받으면 문자열로 전환하는 메서드
+    private func dateTostring(date: Date) -> String {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yy. MM. dd (EEEEE)"
+        formatter.locale = Locale(identifier: "ko_KR")
+        return formatter.string(from: date)
     }
     
     // 주유일시 날짜 피커뷰 꾸미기

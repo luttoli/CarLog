@@ -34,7 +34,16 @@ class OilDetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.configureView()
+        configureNoteTextview()
 
+    }
+    
+    // 비고
+    private func configureNoteTextview() {
+        let borderColor = UIColor(red: 220/225, green: 220/225, blue: 220/225, alpha: 1.0)
+        self.oilNoteTextView.layer.borderColor = borderColor.cgColor
+        self.oilNoteTextView.layer.borderWidth = 2
+        self.oilNoteTextView.layer.cornerRadius = 5.0
     }
     
     // 프로퍼티를 통해 전달받을 객체를 뷰에 초기화
@@ -47,6 +56,7 @@ class OilDetailViewController: UIViewController {
         self.oilUnitLabel.text = oil.oilunit
         self.oilNumLabel.text = oil.oilnum
         self.oilDcLabel.text = oil.oildc
+        self.oilNoteTextView.text = oil.oilnote
         
         // 수량 소수점 입력은 되는데 계산이 안됨... + 최종금액 반올림, 버림 처리해야함 근데 흠... 둘다 될라나..? = 애초에 전부다 float 값을 만드는건?
         let oilunitint = Int(oil.oilunit)
@@ -65,6 +75,11 @@ class OilDetailViewController: UIViewController {
     
     // 수정
     @IBAction func tabEditButton(_ sender: Any) {
+        guard let viewController = self.storyboard?.instantiateViewController(identifier: "OilWriteViewController") as? OilWriteViewController else { return }
+        guard let indexPath = self.indexPath else { return }
+        guard let oil = self.oil else { return }
+        viewController.oilEditorMode = .edit(indexPath, oil)
+        self.navigationController?.pushViewController(viewController, animated: true)
     }
     
     // 삭제

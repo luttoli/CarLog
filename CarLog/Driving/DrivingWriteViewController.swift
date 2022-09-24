@@ -73,7 +73,6 @@ class DrivingWriteViewController: UIViewController {
             self.arrivalKmTextField.text = driving.arrivalkm
             self.drivingReasonTextField.text = driving.drivingreason
             self.noteTextView.text = driving.note
-            self.saveButton.title = "수정"
             
         default:
             break
