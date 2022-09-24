@@ -22,6 +22,12 @@ class OilViewController: UIViewController {
         super.viewDidLoad()
         self.configureCollectionView()
         self.loadOilList()
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(editOilNotification(_:)),
+            name: NSNotification.Name("editOil"),
+            object: nil
+        )
     }
     
     // 운행일지 리스트 배열에 추가된 일지를 콜랙션뷰에 추가
@@ -32,6 +38,18 @@ class OilViewController: UIViewController {
         self.oilcollectionview.delegate = self
         self.oilcollectionview.dataSource = self
     }
+    
+    //
+    @objc func editOilNotification(_ notification: Notification) {
+        guard let oil = notification.object as? Oil else { return }
+        guard let row = notification.userInfo?["indexPath.row"] as? Int else { return }
+        self.oilList[row] = oil
+        self.oilList = self.oilList.sorted(by: {
+            $0.oilday.compare($1.oilday) == .orderedDescending
+        })
+        self.oilcollectionview.reloadData()
+    }
+    
     
     // 작성화면의 이동은 세그웨이를 통해서 이동하기 떄문에 prepare 이용
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
