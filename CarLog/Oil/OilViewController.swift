@@ -81,16 +81,11 @@ class OilViewController: UIViewController {
         let userDefaults = UserDefaults.standard // 접근
         guard let data = userDefaults.object(forKey: "oilList") as? [[String: Any]] else { return }// 키값을 넘겨줘서 리스트를 가져옴 / 오브젝트는 any타입이기 때문에 딕셔너리 배열 형태로 타입케스팅 / 타입케스팅 실패하면 nil이 될수도 있으니까 guard문으로 옵셔널 바인딩
         self.oilList = data.compactMap { // 고차함수로 리스트 타입 배열이 되게 맵핑
-            guard let oilday = $0["oilday"] as? Date else {
-                return nil }
-            guard let oilzon = $0["oilzon"] as? String else {
-                return nil }
-            guard let oilkm = $0["oilkm"] as? String else {
-                return nil }
-            guard let oiltype = $0["oiltype"] as? String else {
-                return nil }
-            guard let oilunit = $0["oilunit"] as? String else {
-                return nil }
+            guard let oilday = $0["oilday"] as? Date else { return nil }
+            guard let oilzon = $0["oilzon"] as? String else { return nil }
+            guard let oilkm = $0["oilkm"] as? String else { return nil }
+            guard let oiltype = $0["oiltype"] as? String else { return nil }
+            guard let oilunit = $0["oilunit"] as? String else { return nil }
             guard let oilnum = $0["oilnum"] as? String else { return nil }
             guard let oilprice = $0["oilprice"] as? String else { return nil }
             guard let oilnote = $0["oilnote"] as? String else { return nil }

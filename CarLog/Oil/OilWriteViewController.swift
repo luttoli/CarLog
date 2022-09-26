@@ -7,6 +7,7 @@
 
 import UIKit
 
+//
 enum OilEditorMode {
     case new
     case edit(IndexPath, Oil)
@@ -318,7 +319,7 @@ class OilWriteViewController: UIViewController {
         self.oilUnitTextField.becomeFirstResponder()
     }
     
-    // 할인 툴바 설정
+    // 총 금액 툴바 설정
     private func oilpirceToolbar() {
         let oilpricetoolbar = UIToolbar()
         oilpricetoolbar.barStyle = UIBarStyle.default
@@ -336,17 +337,17 @@ class OilWriteViewController: UIViewController {
         oilPriceTextField.inputAccessoryView = oilpricetoolbar
     }
     
-    // 할인 툴바 선택 버튼
+    // 총 금액 툴바 선택 버튼
     @objc func oilpricetoolbarSelect() {
         self.oilPriceTextField.resignFirstResponder()
     }
     
-    // 할인 툴바 다음 버튼
+    // 총 금액 툴바 다음 버튼
     @objc func oilpricetoolbarNext() {
         self.oilNoteTextView.becomeFirstResponder()
     }
     
-    // 할인 툴바 이전 버튼
+    // 총 금액 툴바 이전 버튼
     @objc func oilpricetoolbarBefore() {
         self.oilNumTextField.becomeFirstResponder()
     }
@@ -404,6 +405,7 @@ class OilWriteViewController: UIViewController {
         guard let oilnote = self.oilNoteTextView.text else { return }
         let oil = Oil(oilday: oilday, oilzon: oilzon, oilkm: oilkm, oiltype: oiltype, oilunit: oilunit, oilnum: oilnum, oilprice: oilprice, oilnote: oilnote)
         
+        //
         switch self.oilEditorMode {
         case .new:
             self.delegate?.didSelectReigster(oil: oil)
@@ -418,7 +420,7 @@ class OilWriteViewController: UIViewController {
             )
         }
         
-        self.delegate?.didSelectReigster(oil: oil)
+//        self.delegate?.didSelectReigster(oil: oil)
         self.navigationController?.popViewController(animated: true) // 화면 전환
     }
     
@@ -465,7 +467,8 @@ class OilWriteViewController: UIViewController {
     
     // 등록버튼에 활성화 여부 판단하는 메서드
     private func validateInputField() {
-        self.saveButton.isEnabled = !(self.oilDayTextField.text?.isEmpty ?? true) && !(self.oilZonTextField.text?.isEmpty ?? true) && !(self.oilKmTextField.text?.isEmpty ?? true) && !(self.oilTypeTextField.text?.isEmpty ?? true) && !(self.oilUnitTextField.text?.isEmpty ?? true) && !(self.oilNumTextField.text?.isEmpty ?? true) && !self.oilNoteTextView.text.isEmpty
+        self.saveButton.isEnabled = !(self.oilDayTextField.text?.isEmpty ?? true) && !(self.oilZonTextField.text?.isEmpty ?? true) && !(self.oilKmTextField.text?.isEmpty ?? true) && !(self.oilTypeTextField.text?.isEmpty ?? true) && !(self.oilUnitTextField.text?.isEmpty ?? true) && !(self.oilNumTextField.text?.isEmpty ?? true) &&
+            !(self.oilPriceTextField.text?.isEmpty ?? true) && !self.oilNoteTextView.text.isEmpty
     }
     
     // 빈 화면을 터치하면 키보드를 내려주는 메서드
