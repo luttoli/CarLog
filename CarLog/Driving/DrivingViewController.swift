@@ -114,6 +114,14 @@ extension DrivingViewController: UICollectionViewDataSource {
         return self.drivingList.count
     }
     
+    // 숫자 세자리마다 콤마 찍기
+    func numberFormatter(number: Int) -> String {
+        let numberFormatter = NumberFormatter()
+        numberFormatter.numberStyle = .decimal
+        
+        return numberFormatter.string(from: NSNumber(value: number))!
+    }
+    
     // 필수 메서드 : cellForItemAt 컬렉션뷰에 지정된 위치에 표시할 셀을 요청하는 메서드
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "DrivingCell", for: indexPath) as? DrivingCell else { return UICollectionViewCell() }
@@ -123,15 +131,16 @@ extension DrivingViewController: UICollectionViewDataSource {
         cell.startAreaLabel.text = driving.startarea
         cell.arrivalAreaLabel.text = driving.arrivalarea
         cell.drivingReasonLabel.text = driving.drivingreason
-        cell.startKmLabel.text = driving.startkm
-        cell.arrivalKmLabel.text = driving.arrivalkm
+        let startkmint = Int(driving.startkm)
+        cell.startKmLabel.text = numberFormatter(number: startkmint!)
+        let arrivalkmint = Int(driving.arrivalkm)
+        cell.arrivalKmLabel.text = numberFormatter(number: arrivalkmint!)
         
         let drivingtime = Int(driving.arrivalday.timeIntervalSince(driving.startday))
         cell.drivingTimeLabel.text = String(drivingtime / 60)
         
-        let arrivalkmint = Int(cell.arrivalKmLabel.text!)
-        let startkmint = Int(cell.startKmLabel.text!)
-        cell.drivingKmLabel.text = String(arrivalkmint! - startkmint!)
+        let drivingkm = arrivalkmint! - startkmint!
+        cell.drivingKmLabel.text = numberFormatter(number: drivingkm)
         
         return cell
     }

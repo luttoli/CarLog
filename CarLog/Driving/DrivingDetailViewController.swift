@@ -44,6 +44,14 @@ class DrivingDetailViewController: UIViewController {
         self.noteTextView.layer.cornerRadius = 5.0
     }
     
+    // 숫자 세자리마다 콤마 찍기
+    func numberFormatter(number: Int) -> String {
+        let numberFormatter = NumberFormatter()
+        numberFormatter.numberStyle = .decimal
+        
+        return numberFormatter.string(from: NSNumber(value: number))!
+    }
+    
     // 프로퍼티를 통해 전달받은 driving 객체를 View에 초기화
     private func configureView() {
         guard let driving = self.driving else { return }
@@ -51,17 +59,18 @@ class DrivingDetailViewController: UIViewController {
         self.arrivalDayLabel.text = self.dateTostring(date: driving.arrivalday)
         self.startAreaLabel.text = driving.startarea
         self.arrivalAreaLabel.text = driving.arrivalarea
-        self.startKmLabel.text = driving.startkm
-        self.arrivalKmLabel.text = driving.arrivalkm
+        let startkmint = Int(driving.startkm)
+        self.startKmLabel.text = numberFormatter(number: startkmint!)
+        let arrivalkmint = Int(driving.arrivalkm)
+        self.arrivalKmLabel.text = numberFormatter(number: arrivalkmint!)
         self.drivingReasonLabel.text = driving.drivingreason
         self.noteTextView.text = driving.note
         
         let drivingtime = Int(driving.arrivalday.timeIntervalSince(driving.startday))
         self.drivingTimeLabel.text = String(drivingtime / 60)
         
-        let arrivalkmint = Int(self.arrivalKmLabel.text!)
-        let startkmint = Int(self.startKmLabel.text!)
-        self.drivingKmLabel.text = String(arrivalkmint! - startkmint!)
+        let drivingkm = arrivalkmint! - startkmint!
+        self.drivingKmLabel.text = numberFormatter(number: drivingkm)
     }
     
     // 문자열로 변환
