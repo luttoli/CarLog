@@ -45,16 +45,27 @@ class OilDetailViewController: UIViewController {
         self.oilNoteTextView.layer.cornerRadius = 5.0
     }
     
+    // 숫자 세자리마다 콤마 찍기
+    func numberFormatter(number: Int) -> String {
+        let numberFormatter = NumberFormatter()
+        numberFormatter.numberStyle = .decimal
+        
+        return numberFormatter.string(from: NSNumber(value: number))!
+    }
+    
     // 프로퍼티를 통해 전달받을 객체를 뷰에 초기화
     private func configureView() {
         guard let oil = self.oil else { return }
         self.oilDayLabel.text = self.dateTostring(date: oil.oilday)
         self.oilZonLabel.text = oil.oilzon
-        self.oilKmLabel.text = oil.oilkm
+        let oilkmint = Int(oil.oilkm)
+        self.oilKmLabel.text = numberFormatter(number: oilkmint!)
         self.oilTypeLabel.text = oil.oiltype
-        self.oilUnitLabel.text = oil.oilunit
+        let oilunitint = Int(oil.oilunit)
+        self.oilUnitLabel.text = numberFormatter(number: oilunitint!)
         self.oilNumLabel.text = oil.oilnum
-        self.oilPriceLabel.text = oil.oilprice
+        let oilpriceint = Int(oil.oilprice)
+        self.oilPriceLabel.text = numberFormatter(number: oilpriceint!)
         self.oilNoteTextView.text = oil.oilnote
     }
     

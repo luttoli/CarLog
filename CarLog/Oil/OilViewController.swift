@@ -7,6 +7,8 @@
 
 import UIKit
 
+import Foundation
+
 // 작성된 주유일지 리스트 화면
 class OilViewController: UIViewController {
 
@@ -114,17 +116,29 @@ extension OilViewController: UICollectionViewDataSource {
         return self.oilList.count
     }
     
+    // 숫자 세자리마다 콤마 찍기
+    func numberFormatter(number: Int) -> String {
+        let numberFormatter = NumberFormatter()
+        numberFormatter.numberStyle = .decimal
+        
+        return numberFormatter.string(from: NSNumber(value: number))!
+    }
+    
     // 필수 메서드 : cellForItemAt 컬렉션뷰에 지정된 위치에 표시할 셀을 요청하는 메서드
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "OilCell", for: indexPath) as? OilCell else { return UICollectionViewCell() }
         let oil = self.oilList[indexPath.row]
+        
         cell.oilDayLabel.text = self.dateTostring(date: oil.oilday)
         cell.oilZonLabel.text = oil.oilzon
-        cell.oilKmLabel.text = oil.oilkm
+        let oilkmint = Int(oil.oilkm)
+        cell.oilKmLabel.text = numberFormatter(number: oilkmint!)
         cell.oilTypeLabel.text = oil.oiltype
-        cell.oilUnitLabel.text = oil.oilunit
+        let oilunitint = Int(oil.oilunit)
+        cell.oilUnitLabel.text = numberFormatter(number: oilunitint!)
         cell.oilNumLabel.text = oil.oilnum
-        cell.oilPriceLabel.text = oil.oilprice
+        let oilpriceint = Int(oil.oilprice)
+        cell.oilPriceLabel.text = numberFormatter(number: oilpriceint!)
         
         return cell
     }
