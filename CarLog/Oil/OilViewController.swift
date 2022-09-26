@@ -68,7 +68,7 @@ class OilViewController: UIViewController {
                 "oiltype": $0.oiltype,
                 "oilunit": $0.oilunit,
                 "oilnum": $0.oilnum,
-                "oildc": $0.oildc,
+                "oilprice": $0.oilprice,
                 "oilnote": $0.oilnote
             ]
         }
@@ -92,9 +92,9 @@ class OilViewController: UIViewController {
             guard let oilunit = $0["oilunit"] as? String else {
                 return nil }
             guard let oilnum = $0["oilnum"] as? String else { return nil }
-            guard let oildc = $0["oildc"] as? String else { return nil }
+            guard let oilprice = $0["oilprice"] as? String else { return nil }
             guard let oilnote = $0["oilnote"] as? String else { return nil }
-            return Oil(oilday: oilday, oilzon: oilzon, oilkm: oilkm, oiltype: oiltype, oilunit: oilunit, oilnum: oilnum, oildc: oildc, oilnote: oilnote)
+            return Oil(oilday: oilday, oilzon: oilzon, oilkm: oilkm, oiltype: oiltype, oilunit: oilunit, oilnum: oilnum, oilprice: oilprice, oilnote: oilnote)
         }
         // 설명 더 있는데 정리할것
         // 주유날짜 비교해서 최근날이 맨 위로 올라가게
@@ -129,12 +129,7 @@ extension OilViewController: UICollectionViewDataSource {
         cell.oilTypeLabel.text = oil.oiltype
         cell.oilUnitLabel.text = oil.oilunit
         cell.oilNumLabel.text = oil.oilnum
-        
-        // 수량 소수점 입력은 되는데 계산이 안됨... + 최종금액 반올림, 버림 처리해야함 근데 흠... 둘다 될라나..?
-        let oilunitint = Int(cell.oilUnitLabel.text!)
-        let oilnumdouble = Float(cell.oilNumLabel.text!)
-        let oildcint = Int(oil.oildc)
-        cell.oilPriceLabel.text = String((oilunitint! * Int(oilnumdouble!)) - oildcint!)
+        cell.oilPriceLabel.text = oil.oilprice
         
         return cell
     }

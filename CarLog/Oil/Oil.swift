@@ -15,6 +15,6 @@ struct Oil {
     var oiltype: String
     var oilunit: String
     var oilnum: String
-    var oildc: String
+    var oilprice: String
     var oilnote: String
 }

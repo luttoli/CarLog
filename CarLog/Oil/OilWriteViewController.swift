@@ -25,7 +25,7 @@ class OilWriteViewController: UIViewController {
     @IBOutlet weak var oilTypeTextField: UITextField!
     @IBOutlet weak var oilUnitTextField: UITextField!
     @IBOutlet weak var oilNumTextField: UITextField!
-    @IBOutlet weak var oilDcTextField: UITextField!
+    @IBOutlet weak var oilPriceTextField: UITextField!
     @IBOutlet weak var oilNoteTextView: UITextView!
     
     @IBOutlet weak var saveButton: UIBarButtonItem!
@@ -52,7 +52,7 @@ class OilWriteViewController: UIViewController {
         configureOilTypePicker()
         oilunitToolbar()
         oilnumToolbar()
-        oildcToolbar()
+        oilpirceToolbar()
         oilnoteToolbar()
         self.configureInputField()
         self.configureEditMode()
@@ -70,7 +70,7 @@ class OilWriteViewController: UIViewController {
             self.oilTypeTextField.text = oil.oiltype
             self.oilUnitTextField.text = oil.oilunit
             self.oilNumTextField.text = oil.oilnum
-            self.oilDcTextField.text = oil.oildc
+            self.oilPriceTextField.text = oil.oilprice
             self.oilNoteTextView.text = oil.oilnote
         
         default:
@@ -310,7 +310,7 @@ class OilWriteViewController: UIViewController {
     
     // 수량 툴바 다음 버튼
     @objc func oilnumtoolbarNext() {
-        self.oilDcTextField.becomeFirstResponder()
+        self.oilPriceTextField.becomeFirstResponder()
     }
     
     // 수량 툴바 이전 버튼
@@ -319,35 +319,35 @@ class OilWriteViewController: UIViewController {
     }
     
     // 할인 툴바 설정
-    private func oildcToolbar() {
-        let oildctoolbar = UIToolbar()
-        oildctoolbar.barStyle = UIBarStyle.default
-        oildctoolbar.isTranslucent = true
-        oildctoolbar.sizeToFit()
+    private func oilpirceToolbar() {
+        let oilpricetoolbar = UIToolbar()
+        oilpricetoolbar.barStyle = UIBarStyle.default
+        oilpricetoolbar.isTranslucent = true
+        oilpricetoolbar.sizeToFit()
         
-        let oildcSelectBT = UIBarButtonItem(title: "완료", style: .plain, target: self, action: #selector(self.oildctoolbarSelect))
+        let oilpriceSelectBT = UIBarButtonItem(title: "완료", style: .plain, target: self, action: #selector(self.oilpricetoolbarSelect))
         let flexibleSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
-        let oildcNextBT = UIBarButtonItem(title: "다음", style: .plain, target: self, action: #selector(self.oildctoolbarNext))
-        let oildcBeforeBT = UIBarButtonItem(title: "이전", style: .plain, target: .none, action: #selector(self.oildctoolbarBefore))
+        let oilpriceNextBT = UIBarButtonItem(title: "다음", style: .plain, target: self, action: #selector(self.oilpricetoolbarNext))
+        let oilpriceBeforeBT = UIBarButtonItem(title: "이전", style: .plain, target: .none, action: #selector(self.oilpricetoolbarBefore))
         
-        oildctoolbar.setItems([oildcBeforeBT,oildcNextBT,flexibleSpace,oildcSelectBT], animated: false)
-        oildctoolbar.isUserInteractionEnabled = true
+        oilpricetoolbar.setItems([oilpriceBeforeBT,oilpriceNextBT,flexibleSpace,oilpriceSelectBT], animated: false)
+        oilpricetoolbar.isUserInteractionEnabled = true
         
-        oilDcTextField.inputAccessoryView = oildctoolbar
+        oilPriceTextField.inputAccessoryView = oilpricetoolbar
     }
     
     // 할인 툴바 선택 버튼
-    @objc func oildctoolbarSelect() {
-        self.oilDcTextField.resignFirstResponder()
+    @objc func oilpricetoolbarSelect() {
+        self.oilPriceTextField.resignFirstResponder()
     }
     
     // 할인 툴바 다음 버튼
-    @objc func oildctoolbarNext() {
+    @objc func oilpricetoolbarNext() {
         self.oilNoteTextView.becomeFirstResponder()
     }
     
     // 할인 툴바 이전 버튼
-    @objc func oildctoolbarBefore() {
+    @objc func oilpricetoolbarBefore() {
         self.oilNumTextField.becomeFirstResponder()
     }
     
@@ -381,7 +381,7 @@ class OilWriteViewController: UIViewController {
     
     // 비고 툴바 이전 버튼
     @objc func oilnotetoolbarBefore() {
-        self.oilDcTextField.becomeFirstResponder()
+        self.oilPriceTextField.becomeFirstResponder()
     }
     
     // Textview 테두리
@@ -400,9 +400,9 @@ class OilWriteViewController: UIViewController {
         guard let oiltype = self.oilTypeTextField.text else { return }
         guard let oilunit = self.oilUnitTextField.text else { return }
         guard let oilnum = self.oilNumTextField.text else { return }
-        guard let oildc = self.oilDcTextField.text else { return }
+        guard let oilprice = self.oilPriceTextField.text else { return }
         guard let oilnote = self.oilNoteTextView.text else { return }
-        let oil = Oil(oilday: oilday, oilzon: oilzon, oilkm: oilkm, oiltype: oiltype, oilunit: oilunit, oilnum: oilnum, oildc: oildc, oilnote: oilnote)
+        let oil = Oil(oilday: oilday, oilzon: oilzon, oilkm: oilkm, oiltype: oiltype, oilunit: oilunit, oilnum: oilnum, oilprice: oilprice, oilnote: oilnote)
         
         switch self.oilEditorMode {
         case .new:
@@ -430,7 +430,7 @@ class OilWriteViewController: UIViewController {
         self.oilTypeTextField.addTarget(self, action: #selector(oilTypeFieldDidChange(_:)), for: .editingChanged)
         self.oilUnitTextField.addTarget(self, action: #selector(oilUnitTextFieldDidChange(_:)), for: .editingChanged)
         self.oilNumTextField.addTarget(self, action: #selector(oilNumTextFieldDidChange(_:)), for: .editingChanged)
-        self.oilDcTextField.addTarget(self, action: #selector(oilDcTextFieldDidChange(_:)), for: .editingChanged)
+        self.oilPriceTextField.addTarget(self, action: #selector(oilPriceTextFieldDidChange(_:)), for: .editingChanged)
         self.oilNoteTextView.delegate = self
     }
     
@@ -459,7 +459,7 @@ class OilWriteViewController: UIViewController {
         self.validateInputField()
     }
     
-    @objc private func oilDcTextFieldDidChange(_ textField: UITextField) {
+    @objc private func oilPriceTextFieldDidChange(_ textField: UITextField) {
         self.validateInputField()
     }
     

@@ -20,7 +20,6 @@ class OilDetailViewController: UIViewController {
     @IBOutlet weak var oilTypeLabel: UILabel!
     @IBOutlet weak var oilUnitLabel: UILabel!
     @IBOutlet weak var oilNumLabel: UILabel!
-    @IBOutlet weak var oilDcLabel: UILabel!
     @IBOutlet weak var oilPriceLabel: UILabel!
     @IBOutlet weak var oilNoteTextView: UITextView!
     
@@ -55,14 +54,8 @@ class OilDetailViewController: UIViewController {
         self.oilTypeLabel.text = oil.oiltype
         self.oilUnitLabel.text = oil.oilunit
         self.oilNumLabel.text = oil.oilnum
-        self.oilDcLabel.text = oil.oildc
+        self.oilPriceLabel.text = oil.oilprice
         self.oilNoteTextView.text = oil.oilnote
-        
-        // 수량 소수점 입력은 되는데 계산이 안됨... + 최종금액 반올림, 버림 처리해야함 근데 흠... 둘다 될라나..? = 애초에 전부다 float 값을 만드는건?
-        let oilunitint = Int(oil.oilunit)
-        let oilnumdouble = Float(oil.oilnum)
-        let oildcint = Int(oil.oildc)
-        self.oilPriceLabel.text = String((oilunitint! * Int(oilnumdouble!)) - oildcint!)
     }
     
     // 문자열로 변환
