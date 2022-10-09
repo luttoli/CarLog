@@ -22,8 +22,6 @@
 		CF80ECF52896C12200A6E4DC /* DrivingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF80ECF42896C12200A6E4DC /* DrivingViewController.swift */; };
 		CF80ECF728A6A88500A6E4DC /* Driving.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF80ECF628A6A88500A6E4DC /* Driving.swift */; };
 		CFACBCC628C0B54700AA540B /* Oil.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFACBCC528C0B54700AA540B /* Oil.swift */; };
-		CFB8769728E7341200AF7F3F /* WeatherViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFB8769628E7341200AF7F3F /* WeatherViewController.swift */; };
-		CFB8769A28E735E700AF7F3F /* WeatherInformation.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFB8769928E735E700AF7F3F /* WeatherInformation.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -44,8 +42,6 @@
 		CF80ECF42896C12200A6E4DC /* DrivingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrivingViewController.swift; sourceTree = "<group>"; };
 		CF80ECF628A6A88500A6E4DC /* Driving.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Driving.swift; sourceTree = "<group>"; };
 		CFACBCC528C0B54700AA540B /* Oil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Oil.swift; sourceTree = "<group>"; };
-		CFB8769628E7341200AF7F3F /* WeatherViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherViewController.swift; sourceTree = "<group>"; };
-		CFB8769928E735E700AF7F3F /* WeatherInformation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherInformation.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -84,21 +80,11 @@
 				CF4A52FF2893D7C3008D6D17 /* LaunchScreen.storyboard */,
 				CF4A52FA2893D7C1008D6D17 /* Main.storyboard */,
 				CF4A53022893D7C3008D6D17 /* Info.plist */,
-				CFB8769828E7341D00AF7F3F /* weather */,
 				CFBAB63D28B2828D0041376B /* Driving */,
 				CFBAB63E28B282B50041376B /* Oil */,
 				CFB8769B28EDE19A00AF7F3F /* Repair */,
 			);
 			path = CarLog;
-			sourceTree = "<group>";
-		};
-		CFB8769828E7341D00AF7F3F /* weather */ = {
-			isa = PBXGroup;
-			children = (
-				CFB8769628E7341200AF7F3F /* WeatherViewController.swift */,
-				CFB8769928E735E700AF7F3F /* WeatherInformation.swift */,
-			);
-			path = weather;
 			sourceTree = "<group>";
 		};
 		CFB8769B28EDE19A00AF7F3F /* Repair */ = {
@@ -207,12 +193,10 @@
 				CF80ECF12896B5B200A6E4DC /* DrivingWriteViewController.swift in Sources */,
 				CF4F3E3128B52A7200D91FD5 /* OilViewController.swift in Sources */,
 				CF4F3E2F28B519C200D91FD5 /* OilDetailViewController.swift in Sources */,
-				CFB8769728E7341200AF7F3F /* WeatherViewController.swift in Sources */,
 				CF80ECF32896B60600A6E4DC /* DrivingDetailViewController.swift in Sources */,
 				CF80ECF728A6A88500A6E4DC /* Driving.swift in Sources */,
 				CF7E609828B3DE1300442CA9 /* OilCell.swift in Sources */,
 				CF4A52F52893D7C1008D6D17 /* AppDelegate.swift in Sources */,
-				CFB8769A28E735E700AF7F3F /* WeatherInformation.swift in Sources */,
 				CFACBCC628C0B54700AA540B /* Oil.swift in Sources */,
 				CF4F3E2D28B5199B00D91FD5 /* OilWriteViewController.swift in Sources */,
 				CF4A52F72893D7C1008D6D17 /* SceneDelegate.swift in Sources */,
