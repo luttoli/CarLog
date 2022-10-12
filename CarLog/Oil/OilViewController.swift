@@ -146,7 +146,7 @@ extension OilViewController: UICollectionViewDataSource {
 
 extension OilViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: (UIScreen.main.bounds.width) - 20, height: 90)
+        return CGSize(width: (UIScreen.main.bounds.width) - 20, height: 72)
     }
 }
 
